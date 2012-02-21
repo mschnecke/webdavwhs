@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-US" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+	<String Id="LANG">1033</String>
+	<String Id="ProductName">Printer Dashboard Agent</String>
+	<String Id="Description">Printer Dashboard Agent</String>
+	<String Id="Comments">Printer Dashboard Agent</String>
+	<String Id="DowngradeErrorMessage">A later version of Printer Dashboard Agent is already installed.</String>
+	<String Id="CompanyUrl">http://cortado.com</String>
+	<String Id="InstallCondition01">The Microsoft .NET Framework is required. To continue the installation, please install the Microsoft .NET Framework 3.5 SP1.</String>
+	<String Id="InstallCondition02">This installation package is designed for 32-bit platforms (x86) only.</String>
+	<String Id="InstallCondition03">You do not have sufficient privileges to run this installation. Administrative privileges are required for this installation.</String>
+	<String Id="InstallCondition04">Your operating system must be Windows XP SP2, Windows Server 2003 with SP2, or higher to continue installation.</String>
+</WixLocalization>

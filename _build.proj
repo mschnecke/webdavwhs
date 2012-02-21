@@ -3,15 +3,17 @@
 	<Import Project="$(MSBuildProjectDirectory)\Tools\WebDavWhs.MSBuild.targets"/>
 
 	<PropertyGroup>
-		<ToolsFolder>$(MSBuildProjectDirectory)\Tools\</ToolsFolder>
+		<ToolsFolder>$(MSBuildProjectDirectory)\Tools</ToolsFolder>
 	</PropertyGroup>
-
+	
 	<PropertyGroup>
 		<ProjectMSBuild>WebDavWhs.MSBuild</ProjectMSBuild>
+		<ProjectCustomAction>WebDavWhs.CustomAction</ProjectCustomAction>
 	</PropertyGroup>
 	
 	<ItemGroup>
 		<ProjRefMSBuild Include="$(MSBuildProjectDirectory)\$(ProjectMSBuild)\$(ProjectMSBuild).csproj" />
+		<ProjRefCustomAction Include="$(MSBuildProjectDirectory)\$(ProjectCustomAction)\$(ProjectCustomAction).csproj" />
 	</ItemGroup>
 
 	<Target Name="MSBuild">
@@ -25,6 +27,25 @@
 						 StopOnFirstFailure="true"
 						 Targets="Rebuild">
 		</MSBuild>
-
 	</Target>
+
+	<Target Name="CustomAction">
+
+		<!--increment the build number in AssemblyInfo file-->
+		<IncrementBuildNumber FilePath="$(MSBuildProjectDirectory)\$(ProjectCustomAction)\Properties\AssemblyInfo.cs" />
+
+		<!--build-->
+		<MSBuild Projects="@(ProjRefCustomAction)"
+						 Properties="Configuration=Release;Platform=x64"
+						 StopOnFirstFailure="true"
+						 Targets="Rebuild">
+		</MSBuild>
+		
+		<!--copy to tools folder-->
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\$(ProjectCustomAction)\bin\Release\x64\WebDavWhs.CustomAction.CA.dll" DestinationFolder="$(ToolsFolder)" ContinueOnError="false" />
+	</Target>
+	
+	
+	
+	
 </Project>
