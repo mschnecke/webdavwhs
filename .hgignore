@@ -1,8 +1,7 @@
 syntax: glob
-Solution.sln.docstates.suo
 TestApp/bin/Debug/*
-Solution.suo
 TestApp/obj/*
 WebDavWhs.Library.UnitTest/obj*
 WebDavWhs.Library/bin/Debug/*
 WebDavWhs.Library/obj/*
+*.suo

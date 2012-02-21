@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="$(MSBuildProjectDirectory)\Tools\WebDavWhs.MSBuild.targets"/>
+
+	<PropertyGroup>
+		<ToolsFolder>$(MSBuildProjectDirectory)\Tools\</ToolsFolder>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ProjectMSBuild>WebDavWhs.MSBuild</ProjectMSBuild>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<ProjRefMSBuild Include="$(MSBuildProjectDirectory)\$(ProjectMSBuild)\$(ProjectMSBuild).csproj" />
+	</ItemGroup>
+
+	<Target Name="MSBuild">
+
+		<!--increment the build number in AssemblyInfo file-->
+		<IncrementBuildNumber FilePath="$(MSBuildProjectDirectory)\$(ProjectMSBuild)\Properties\AssemblyInfo.cs" />
+
+		<!--build-->
+		<MSBuild Projects="@(ProjRefMSBuild)"
+						 Properties="Configuration=Release;Platform=AnyCPU"
+						 StopOnFirstFailure="true"
+						 Targets="Rebuild">
+		</MSBuild>
+
+	</Target>
+</Project>
