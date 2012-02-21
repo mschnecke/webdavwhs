@@ -1,7 +1,5 @@
 syntax: glob
-TestApp/bin/Debug/*
-TestApp/obj/*
-WebDavWhs.Library.UnitTest/obj*
-WebDavWhs.Library/bin/Debug/*
-WebDavWhs.Library/obj/*
+*/Debug/*
+*/obj/*
 *.suo
+*.vshost.*
