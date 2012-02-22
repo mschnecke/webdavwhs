@@ -2,8 +2,8 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<?include $(sys.CURRENTDIR)\version.wxi?>
 	
-	<Product Id="*" Name="!(loc.ProductName)" Language="!(loc.LANG)" Version="$(var.ProductVersion)" Manufacturer="!(loc.Manufacturer)" Codepage="1252" UpgradeCode="9cbedbdd-ca47-4c9b-9fe0-347ac11527c6">
-		<Package Keywords="Installer" InstallerVersion="405" Compressed="yes" SummaryCodepage="1252" Languages="!(loc.LANG)" Platform="$(var.MSIPlatform)" Description="!(loc.Description)" Comments="!(loc.Comments)" />
+	<Product Id="{A6090CE5-E9FF-4BD7-8A62-C99906719D9C}" Name="!(loc.ProductName)" Language="!(loc.LANG)" Version="$(var.ProductVersion)" Manufacturer="!(loc.Manufacturer)" Codepage="1252" UpgradeCode="{A4E84305-E3C4-4831-8820-6F8EEEF1F94B}">
+		<Package Keywords="Installer" InstallerVersion="405" Compressed="yes" SummaryCodepage="1252" Platform="$(var.MSIPlatform)" Description="!(loc.Description)" Comments="!(loc.Comments)" />
 		<Media Id="1" Cabinet="Data1.cab" EmbedCab="yes" />
 
 		<Feature Id='Complete' Level='1'>

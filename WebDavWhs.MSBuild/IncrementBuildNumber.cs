@@ -22,9 +22,11 @@ namespace WebDavWhs.MSBuild
 		private Version version;
 
 		/// <summary>
-		/// 	Gets or sets the full path to the AssemblyInfo file.
+		/// Sets the full path to the AssemblyInfo file.
 		/// </summary>
-		/// <value> The file path. </value>
+		/// <value>
+		/// The file path.
+		/// </value>
 		[Required]
 		public string FilePath
 		{
@@ -50,7 +52,7 @@ namespace WebDavWhs.MSBuild
 		/// <summary>
 		/// 	Executes this instance.
 		/// </summary>
-		/// <returns> </returns>
+		/// <returns>Task result.</returns>
 		public override bool Execute()
 		{
 			this.Log.LogMessage(MessageImportance.High, "Task: IncrementBuildNumber");

@@ -4,3 +4,4 @@ syntax: glob
 *.suo
 *.vshost.*
 _ReSharper.Solution/*
+WebDavWhs.Setup/bin/*
