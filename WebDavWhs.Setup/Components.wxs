@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?include $(sys.CURRENTDIR)\Include.wxi?>
+	<Fragment>
+		<Directory Id='TARGETDIR' Name='SourceDir'>
+			<Directory Id='ProgramFiles64Folder' Name='PFiles'>
+				<Component Id='version.wxi' Guid='{4966DECE-063A-4805-988D-2A47DC5A4433}' Win64='$(var.Win64)'>
+					<File Id='version.wxi' Source='version.wxi'/>
+				</Component>
+
+				<!--TODO: program folder -->
+
+				<Directory Id='WindowsServerDir' Name='Windows Server'>
+					<Directory Id='WindowsServerBinDir' Name='Bin'>
+						<Directory Id='WindowsServerAddinsDir' Name='Addins'>
+							<Directory Id='WindowsServerStorageDir' Name='Storage'>
+
+								<!--TODO:-->
+
+
+							</Directory>
+						</Directory>
+					</Directory>
+				</Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+</Wix>
