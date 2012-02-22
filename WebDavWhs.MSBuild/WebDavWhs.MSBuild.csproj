@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="IncrementBuildNumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WixSetProductVersion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WebDavWhs.MSBuild.targets">

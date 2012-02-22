@@ -2,5 +2,6 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	
 	<UsingTask AssemblyFile="WebDavWhs.MSBuild.dll" TaskName="IncrementBuildNumber" />
+	<UsingTask AssemblyFile="WebDavWhs.MSBuild.dll" TaskName="WixSetProductVersion" />
 
 </Project>

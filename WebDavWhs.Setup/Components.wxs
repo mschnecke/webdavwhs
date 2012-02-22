@@ -8,7 +8,10 @@
 					<File Id='version.wxi' Source='version.wxi'/>
 				</Component>
 
-				<!--TODO: program folder -->
+				
+				<Directory Id='WEBDAV4WHS' Name='WebDAV for WHS'>
+					<!--TODO: components -->
+				</Directory>
 
 				<Directory Id='WindowsServerDir' Name='Windows Server'>
 					<Directory Id='WindowsServerBinDir' Name='Bin'>

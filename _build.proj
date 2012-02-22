@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<Import Project="$(MSBuildProjectDirectory)\Tools\WebDavWhs.MSBuild.targets"/>
 
 	<PropertyGroup>
@@ -10,11 +10,93 @@
 		<ProjectMSBuild>WebDavWhs.MSBuild</ProjectMSBuild>
 		<ProjectCustomAction>WebDavWhs.CustomAction</ProjectCustomAction>
 	</PropertyGroup>
-	
+
+	<PropertyGroup>
+		<AddInFile>$(MSBuildProjectDirectory)\Release\WebDavWhs.dll</AddInFile>
+		<AddInXmlFile>$(MSBuildProjectDirectory)\WssxAddInPackage\AddIn.xml</AddInXmlFile>
+		<AddInXmlNamespace>&lt;Namespace Prefix='wss' Uri='http://schemas.microsoft.com/WindowsServerSolutions/2010/03/Addins' /&gt;</AddInXmlNamespace>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<ProjRefMSBuild Include="$(MSBuildProjectDirectory)\$(ProjectMSBuild)\$(ProjectMSBuild).csproj" />
 		<ProjRefCustomAction Include="$(MSBuildProjectDirectory)\$(ProjectCustomAction)\$(ProjectCustomAction).csproj" />
+		<ProjRefSetup Include="$(MSBuildProjectDirectory)\WebDavWhs.Setup\WebDavWhs.Setup.wixproj" />
+		<ProjRefPackage Include="$(MSBuildProjectDirectory)\WssxAddInPackage\WssxAddInPackage.wssxproj" />
 	</ItemGroup>
+
+	<Target Name="Library">
+	</Target>
+
+	<Target Name="DashboardAddin" DependsOnTargets="Library">
+	</Target>
+
+	<Target Name="Installer" DependsOnTargets="DashboardAddin">
+		
+		<!--set ProductVersion from add-In assembly-->
+		<GetAssemblyIdentity AssemblyFiles="$(AddInFile)">
+			<Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />
+		</GetAssemblyIdentity>
+
+		<WixSetProductVersion FilePath="$(MSBuildProjectDirectory)\WebDavWhs.Setup\version.wxi" Version="%(MyAssemblyIdentities.Version)" ContinueOnError="false" />
+
+		<!--build msi-->
+		<MSBuild Projects="@(ProjRefSetup)"
+				 Properties="Configuration=Release;Platform=x64"
+				 Targets="Rebuild">
+		</MSBuild>
+	</Target>
+
+	<Target Name="AddInPackage" DependsOnTargets="Installer">
+
+		<!--get assembly version-->
+		<GetAssemblyIdentity AssemblyFiles="$(AddInFile)">
+			<Output TaskParameter="Assemblies" ItemName="MyAssemblyIdentities" />
+		</GetAssemblyIdentity>
+
+		<!-- Update AddIn.xml file to use correct Name, Version and ProductCode -->
+		<XmlPoke XmlInputPath="$(AddInXmlFile)" Query="//wss:Package/wss:Version" Namespaces="$(AddInXmlNamespace)" Value="%(MyAssemblyIdentities.Version)" />
+		<XmlPoke XmlInputPath="$(AddInXmlFile)" Query="//wss:Package/wss:ServerBinary/wss:File/wss:Version" Namespaces="$(AddInXmlNamespace)" Value="%(MyAssemblyIdentities.Version)" />
+	
+		<!--update installer file-->
+		<Copy SourceFiles="$(MSBuildProjectDirectory)\WebDavWhs.Setup\bin\x64\Release\en-US\WebDavWhs.AddIn.msi" DestinationFolder="$(MSBuildProjectDirectory)\WssxAddInPackage\" ContinueOnError="false" />
+		
+		<!--build package-->
+		<MSBuild Projects="@(ProjRefPackage)"
+				 Properties="Configuration=Release"
+				 Targets="Rebuild">
+		</MSBuild>
+	</Target>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<Target Name="MSBuild">
 
@@ -44,8 +126,5 @@
 		<!--copy to tools folder-->
 		<Copy SourceFiles="$(MSBuildProjectDirectory)\$(ProjectCustomAction)\bin\Release\x64\WebDavWhs.CustomAction.CA.dll" DestinationFolder="$(ToolsFolder)" ContinueOnError="false" />
 	</Target>
-	
-	
-	
 	
 </Project>
