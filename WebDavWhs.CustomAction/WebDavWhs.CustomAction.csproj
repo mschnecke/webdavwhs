@@ -78,6 +78,7 @@
     <Compile Include="Common\MsiSessionLogger.cs" />
     <Compile Include="CustomAction.cs" />
     <Compile Include="Common\MsiLogTraceListener.cs" />
+    <Compile Include="ProcessHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="CustomAction.config" />
   </ItemGroup>

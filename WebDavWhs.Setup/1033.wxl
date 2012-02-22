@@ -2,8 +2,8 @@
 <WixLocalization Culture="en-US" xmlns="http://schemas.microsoft.com/wix/2006/localization">
 	<String Id="LANG">1033</String>
 	<String Id="ProductName">WebDAV for WHS</String>
-	<String Id="Description">WebDAV for WHS</String>
-	<String Id="Comments">WebDAV for WHS</String>
+	<String Id="Description">Microsoft Home Server 2011 Add-in to enable WebDAV access to the server folders.</String>
+	<String Id="Comments">Microsoft Home Server 2011 Add-in to enable WebDAV access to the server folders.</String>
 	<String Id="DowngradeErrorMessage">A later version of WebDAV for WHS is already installed.</String>
 	<String Id="Manufacturer">http://webdavwhs.codeplex.com/</String>
 	<String Id="CompanyUrl">http://webdavwhs.codeplex.com/</String>
