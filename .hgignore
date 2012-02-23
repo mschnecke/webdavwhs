@@ -5,3 +5,4 @@ syntax: glob
 *.vshost.*
 _ReSharper.Solution/*
 WebDavWhs.Setup/bin/*
+*StyleCop.Cache
