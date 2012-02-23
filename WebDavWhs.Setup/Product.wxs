@@ -7,10 +7,8 @@
 		<Media Id="1" Cabinet="Data1.cab" EmbedCab="yes" />
 
 		<Feature Id='Complete' Level='1'>
-			<ComponentRef Id='version.wxi'/>
+			<ComponentRef Id='WebDavWhs.addin'/>
 		</Feature>
-
-
 
 		<DirectoryRef Id="TARGETDIR"/>
 		<CustomActionRef Id="ServerRoles" />
@@ -18,7 +16,6 @@
 		<Property Id="MSIRESTARTMANAGERCONTROL" Value="Disable" />
 		<Property Id="ALLUSERS" Value="1" />
 		<Property Id="MsiLogging" Value="voicewarmupx!" />
-
 
 	</Product>
 </Wix>

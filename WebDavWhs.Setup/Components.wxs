@@ -4,23 +4,16 @@
 	<Fragment>
 		<Directory Id='TARGETDIR' Name='SourceDir'>
 			<Directory Id='ProgramFiles64Folder' Name='PFiles'>
-				<Component Id='version.wxi' Guid='{4966DECE-063A-4805-988D-2A47DC5A4433}' Win64='$(var.Win64)'>
-					<File Id='version.wxi' Source='version.wxi'/>
-				</Component>
-
-				
 				<Directory Id='WEBDAV4WHS' Name='WebDAV for WHS'>
 					<!--TODO: components -->
 				</Directory>
-
 				<Directory Id='WindowsServerDir' Name='Windows Server'>
 					<Directory Id='WindowsServerBinDir' Name='Bin'>
 						<Directory Id='WindowsServerAddinsDir' Name='Addins'>
 							<Directory Id='WindowsServerStorageDir' Name='Storage'>
-
-								<!--TODO:-->
-
-
+								<Component Id='WebDavWhs.addin' Guid='{5A9D8EB7-C641-4383-A83B-368DE2470100}' Shared='yes' Win64='$(var.Win64)'>
+									<File Id='WebDavWhs.addin' Source='$(var.SourceDir)\WebDavWhs.addin' KeyPath='yes' />
+								</Component>
 							</Directory>
 						</Directory>
 					</Directory>
