@@ -1,170 +1,173 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Pack" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<ProjectGuid>{bd779682-d48f-47a9-af70-d5db17d8e88a}</ProjectGuid>
-		<Name>WssxAddInPackage</Name>
-		<RootNamespace>WssxAddInPackage</RootNamespace>
-		<OutputType>Package</OutputType>
-		<PackageName>WebDavWhs.wssx</PackageName>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<OutputPath>bin\Debug\</OutputPath>
-		<DefineConstants>DEBUG</DefineConstants>
-		<SignAssembly>False</SignAssembly>
-		<CertificateFile>
-		</CertificateFile>
-		<TimeStampServer>http://timestamp.verisign.com/scripts/timstamp.dll</TimeStampServer>
-		<AdditionalArguments>
-		</AdditionalArguments>
-		<VerifySignature>True</VerifySignature>
-		<AdditionalVerifyArguments>
-		</AdditionalVerifyArguments>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<OutputPath>bin\Release\</OutputPath>
-		<SignAssembly>False</SignAssembly>
-		<CertificateFile>
-		</CertificateFile>
-		<TimeStampServer>http://timestamp.verisign.com/scripts/timstamp.dll</TimeStampServer>
-		<AdditionalArguments>
-		</AdditionalArguments>
-		<VerifySignature>True</VerifySignature>
-		<AdditionalVerifyArguments>
-		</AdditionalVerifyArguments>
-	</PropertyGroup>
-	<ItemGroup>
-		<Content Include="AddIn.xml">
-			<SubType>Content</SubType>
-		</Content>
-		<Content Include="Eula.rtf">
-			<SubType>Content</SubType>
-		</Content>
-		<Content Include="WebDavWhs.AddIn.msi">
-			<SubType>Content</SubType>
-		</Content>
-	</ItemGroup>
-	<Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
-	<PropertyGroup>
-		<ExcludeExtensions>*.snk;*.pfx;*.svn</ExcludeExtensions>
-		<CabFile>$(OutputPath)$(PackageName)</CabFile>
-		<CabReportFile>$(OutputPath)$(PackageName).rpt</CabReportFile>
-		<CabInfFile>$(OutputPath)$(PackageName).inf</CabInfFile>
-		<CabDefinitionFile>$(IntermediateOutputPath)$(PackageName).ddf</CabDefinitionFile>
-	</PropertyGroup>
-	<ItemGroup>
-		<CabDefinition Include=".Set SourceDir=$(OutputPath)" />
-		<CabDefinition Include=".Set DiskDirectory1=$(OutputPath)" />
-		<CabDefinition Include=".Set CabinetName1=$(PackageName)" />
-		<CabDefinition Include=".Set UniqueFiles=OFF" />
-		<CabDefinition Include=".Set Compress=ON" />
-		<CabDefinition Include=".Set CompressionType=LZX" />
-		<CabDefinition Include=".Set CompressionMemory=21" />
-		<CabDefinition Include=".Set MaxDiskSize=0" />
-		<CabDefinition Include=".Set Cabinet=ON" />
-		<CabDefinition Include=".Set MaxCabinetSize=0" />
-		<CabDefinition Include=".Set InfFileName=$(CabInfFile)" />
-		<CabDefinition Include=".Set RptFileName=$(CabReportFile)" />
-	</ItemGroup>
-	<ItemGroup>
-		<SignToolArgument Include="sign" />
-		<SignToolArgument Include="/v" />
-		<SignToolArgument Include="/f &quot;$(CertificateFile)&quot;" Condition="'$(CertificateFile)' != ''" />
-		<SignToolArgument Include="/t &quot;$(TimeStampServer)&quot;" Condition="'$(TimeStampServer)' != ''" />
-		<SignToolArgument Include="$(AdditionalArguments)" Condition="'$(AdditionalArguments)' != ''" />
-	</ItemGroup>
-	<ItemGroup>
-		<SignToolVerifyArgument Include="verify" />
-		<SignToolVerifyArgument Include="/v" />
-		<SignToolVerifyArgument Include="/pa" />
-		<SignToolVerifyArgument Include="$(AdditionalVerifyArguments)" Condition="'$(AdditionalVerifyArguments)' != ''" />
-	</ItemGroup>
-	<PropertyGroup>
-		<PackDependsOn>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{bd779682-d48f-47a9-af70-d5db17d8e88a}</ProjectGuid>
+    <Name>WssxAddInPackage</Name>
+    <RootNamespace>WssxAddInPackage</RootNamespace>
+    <OutputType>Package</OutputType>
+    <PackageName>WebDavWhs.wssx</PackageName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <SignAssembly>False</SignAssembly>
+    <CertificateFile>
+    </CertificateFile>
+    <TimeStampServer>http://timestamp.verisign.com/scripts/timstamp.dll</TimeStampServer>
+    <AdditionalArguments>
+    </AdditionalArguments>
+    <VerifySignature>True</VerifySignature>
+    <AdditionalVerifyArguments>
+    </AdditionalVerifyArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <SignAssembly>False</SignAssembly>
+    <CertificateFile>
+    </CertificateFile>
+    <TimeStampServer>http://timestamp.verisign.com/scripts/timstamp.dll</TimeStampServer>
+    <AdditionalArguments>
+    </AdditionalArguments>
+    <VerifySignature>True</VerifySignature>
+    <AdditionalVerifyArguments>
+    </AdditionalVerifyArguments>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="AddIn.xml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Eula.rtf">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="WebDavWhs.AddIn.msi">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <PropertyGroup>
+    <ExcludeExtensions>*.snk;*.pfx;*.svn</ExcludeExtensions>
+    <CabFile>$(OutputPath)$(PackageName)</CabFile>
+    <CabReportFile>$(OutputPath)$(PackageName).rpt</CabReportFile>
+    <CabInfFile>$(OutputPath)$(PackageName).inf</CabInfFile>
+    <CabDefinitionFile>$(IntermediateOutputPath)$(PackageName).ddf</CabDefinitionFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <CabDefinition Include=".Set SourceDir=$(OutputPath)" />
+    <CabDefinition Include=".Set DiskDirectory1=$(OutputPath)" />
+    <CabDefinition Include=".Set CabinetName1=$(PackageName)" />
+    <CabDefinition Include=".Set UniqueFiles=OFF" />
+    <CabDefinition Include=".Set Compress=ON" />
+    <CabDefinition Include=".Set CompressionType=LZX" />
+    <CabDefinition Include=".Set CompressionMemory=21" />
+    <CabDefinition Include=".Set MaxDiskSize=0" />
+    <CabDefinition Include=".Set Cabinet=ON" />
+    <CabDefinition Include=".Set MaxCabinetSize=0" />
+    <CabDefinition Include=".Set InfFileName=$(CabInfFile)" />
+    <CabDefinition Include=".Set RptFileName=$(CabReportFile)" />
+  </ItemGroup>
+  <ItemGroup>
+    <SignToolArgument Include="sign" />
+    <SignToolArgument Include="/v" />
+    <SignToolArgument Include="/f &quot;$(CertificateFile)&quot;" Condition="'$(CertificateFile)' != ''" />
+    <SignToolArgument Include="/t &quot;$(TimeStampServer)&quot;" Condition="'$(TimeStampServer)' != ''" />
+    <SignToolArgument Include="$(AdditionalArguments)" Condition="'$(AdditionalArguments)' != ''" />
+  </ItemGroup>
+  <ItemGroup>
+    <SignToolVerifyArgument Include="verify" />
+    <SignToolVerifyArgument Include="/v" />
+    <SignToolVerifyArgument Include="/pa" />
+    <SignToolVerifyArgument Include="$(AdditionalVerifyArguments)" Condition="'$(AdditionalVerifyArguments)' != ''" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PackDependsOn>
 			BeforePack;
 			CorePack;
 			SignPack;
 			AfterPack
 		</PackDependsOn>
-	</PropertyGroup>
-	<Target Name="CreateManifestResourceNames" />
-	<Target Name="Pack" DependsOnTargets="$(PackDependsOn)" />
-	<Target Name="BeforePack" />
-	<Target Name="CorePack">
-		<Message Text="Starting CorePack" />
-		<!-- Build excluded file filer -->
-		<ItemGroup>
-			<ExcludeExtensionsFilter Include="$(ExcludeExtensions.Split(';'))" />
-		</ItemGroup>
-		<CreateProperty Value="@(ExcludeExtensionsFilter->'**\%(Identity)')">
-			<Output TaskParameter="Value" PropertyName="ExcludeExtensionsFilterPathed" />
-		</CreateProperty>
-		<!-- Identify "Content" items that pass filter -->
-		<CreateItem Include="@(Content)" Exclude="$(ExcludeExtensionsFilterPathed)">
-			<Output TaskParameter="Include" ItemName="ContentToPack" />
-		</CreateItem>
-		<Message Text="Found content %(Content.Identity)" />
-		<Message Text="Excluding $(ExcludeExtensions) from package" />
-		<Message Text="Including %(ContentToPack.Identity) in package" />
-		<!-- Identify ProjectReference output assemblies -->
-		<AssignProjectConfiguration ProjectReferences="@(ProjectReference)" SolutionConfigurationContents="$(CurrentSolutionConfigurationContents)">
-			<Output TaskParameter="AssignedProjects" ItemName="ProjectReferenceWithCurrentBuildConfiguration" />
-		</AssignProjectConfiguration>
-		<Message Text="Found project reference %(ProjectReferenceWithCurrentBuildConfiguration.Name) with config %(ProjectReferenceWithCurrentBuildConfiguration.FullConfiguration)" Condition="'@(ProjectReferenceWithCurrentBuildConfiguration)' != ''" />
-		<MSBuild Projects="@(ProjectReferenceWithCurrentBuildConfiguration)" UseResultsCache="true" Targets="Build" Properties="%(ProjectReferenceWithCurrentBuildConfiguration.SetConfiguration);%(ProjectReferenceWithCurrentBuildConfiguration.SetPlatform)" ContinueOnError="false">
-			<Output TaskParameter="TargetOutputs" ItemName="ProjectReferenceOutputs" />
-		</MSBuild>
-		<!-- Copy content files to output, preserving directory structure -->
-		<Copy SourceFiles="@(ContentToPack)" DestinationFiles="@(ContentToPack->'$(OutputPath)%(Identity)')">
-			<Output TaskParameter="CopiedFiles" ItemName="PackageFiles" />
-		</Copy>
-		<!-- Copy ProjectReference output to output -->
-		<Copy SourceFiles="@(ProjectReferenceOutputs)" DestinationFiles="@(ProjectReferenceOutputs->'$(OutputPath)%(Filename)%(Extension)')">
-			<Output TaskParameter="CopiedFiles" ItemName="PackageFiles" />
-		</Copy>
-		<Message Text="Copied to output: %(PackageFiles.Identity)" />
-		<!-- Build .ddf file -->
-		<WriteLinesToFile File="$(CabDefinitionFile)" Overwrite="true" Lines="@(CabDefinition);@(ContentToPack-> '%(Identity) %(Identity)');@(ProjectReferenceOutputs->'%(Filename)%(Extension)')" />
-		<!-- Exec makecab -->
-		<Exec Command="makecab.exe /F $(CabDefinitionFile)" />
-		<!-- Set MainAssembly -->
-		<CreateItem Include="$(CabFile)">
-			<Output TaskParameter="Include" ItemName="MainAssembly" />
-		</CreateItem>
-		<Message Importance="High" Text="$(MSBuildProjectName) -&gt; @(MainAssembly->'%(FullPath)')" />
-		<!-- Add output files to clean list -->
-		<ItemGroup>
-			<FileWrites Include="$(CabFile);@(PackageFiles);$(CabDefinitionFile);$(CabInfFile);$(CabReportFile)" />
-		</ItemGroup>
-		<!-- Persist clean list as as CleanFile -->
-		<WriteLinesToFile File="$(IntermediateOutputPath)$(CleanFile)" Lines="@(FileWrites)" Overwrite="true" />
-		<Message Text="Finished CorePack" />
-	</Target>
-	<Target Name="SignPack" Condition="'$(SignAssembly)' == 'true'">
-		<GetFrameworkSdkPath>
-			<Output TaskParameter="Path" PropertyName="FrameworkSdkPath" />
-		</GetFrameworkSdkPath>
-		<CreateProperty Value="$(FrameworkSdkPath)bin\signtool.exe">
-			<Output TaskParameter="Value" PropertyName="SignToolPath" />
-		</CreateProperty>
-		<Exec Command="&quot;$(SignToolPath)&quot; @(SignToolArgument, ' ') &quot;@(MainAssembly->'%(FullPath)')&quot;" />
-		<Exec Command="&quot;$(SignToolPath)&quot; @(SignToolVerifyArgument, ' ') &quot;@(MainAssembly->'%(FullPath)')&quot;" ContinueOnError="true" Condition="'$(VerifySignature)' == 'True'" />
-	</Target>
-	<Target Name="AfterPack" />
-	<Target Name="AfterClean">
-		<Message Text="Starting AfterClean" />
-		<!--Build list of content directories with OutputPath as base-->
-		<CreateItem Include="@(Content->'$(OutputPath)%(RelativeDir)')" Condition="%(RelativeDir) != ''" ContinueOnError="true">
-			<Output ItemName="DirectoriesToDelete" TaskParameter="Include" />
-		</CreateItem>
-		<!--Remove any remaining content directories after "Clean"-->
-		<RemoveDir Directories="@(DirectoriesToDelete)" Condition="Exists('%(DirectoriesToDelete.FullPath)')" ContinueOnError="true" />
-		<Message Text="Finished AfterClean" />
-	</Target>
-	<Target Name="BeforePack">
-	</Target>
-	<Target Name="AfterPack">
-		<Copy SourceFiles="$(OutputPath)$(PackageName)" DestinationFolder="$(ProjectDir)..\Release" ContinueOnError="false" />
-	</Target>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'RemoteDebug' ">
+    <OutputPath>bin\RemoteDebug\</OutputPath>
+  </PropertyGroup>
+  <Target Name="CreateManifestResourceNames" />
+  <Target Name="Pack" DependsOnTargets="$(PackDependsOn)" />
+  <Target Name="BeforePack" />
+  <Target Name="CorePack">
+    <Message Text="Starting CorePack" />
+    <!-- Build excluded file filer -->
+    <ItemGroup>
+      <ExcludeExtensionsFilter Include="$(ExcludeExtensions.Split(';'))" />
+    </ItemGroup>
+    <CreateProperty Value="@(ExcludeExtensionsFilter->'**\%(Identity)')">
+      <Output TaskParameter="Value" PropertyName="ExcludeExtensionsFilterPathed" />
+    </CreateProperty>
+    <!-- Identify "Content" items that pass filter -->
+    <CreateItem Include="@(Content)" Exclude="$(ExcludeExtensionsFilterPathed)">
+      <Output TaskParameter="Include" ItemName="ContentToPack" />
+    </CreateItem>
+    <Message Text="Found content %(Content.Identity)" />
+    <Message Text="Excluding $(ExcludeExtensions) from package" />
+    <Message Text="Including %(ContentToPack.Identity) in package" />
+    <!-- Identify ProjectReference output assemblies -->
+    <AssignProjectConfiguration ProjectReferences="@(ProjectReference)" SolutionConfigurationContents="$(CurrentSolutionConfigurationContents)">
+      <Output TaskParameter="AssignedProjects" ItemName="ProjectReferenceWithCurrentBuildConfiguration" />
+    </AssignProjectConfiguration>
+    <Message Text="Found project reference %(ProjectReferenceWithCurrentBuildConfiguration.Name) with config %(ProjectReferenceWithCurrentBuildConfiguration.FullConfiguration)" Condition="'@(ProjectReferenceWithCurrentBuildConfiguration)' != ''" />
+    <MSBuild Projects="@(ProjectReferenceWithCurrentBuildConfiguration)" UseResultsCache="true" Targets="Build" Properties="%(ProjectReferenceWithCurrentBuildConfiguration.SetConfiguration);%(ProjectReferenceWithCurrentBuildConfiguration.SetPlatform)" ContinueOnError="false">
+      <Output TaskParameter="TargetOutputs" ItemName="ProjectReferenceOutputs" />
+    </MSBuild>
+    <!-- Copy content files to output, preserving directory structure -->
+    <Copy SourceFiles="@(ContentToPack)" DestinationFiles="@(ContentToPack->'$(OutputPath)%(Identity)')">
+      <Output TaskParameter="CopiedFiles" ItemName="PackageFiles" />
+    </Copy>
+    <!-- Copy ProjectReference output to output -->
+    <Copy SourceFiles="@(ProjectReferenceOutputs)" DestinationFiles="@(ProjectReferenceOutputs->'$(OutputPath)%(Filename)%(Extension)')">
+      <Output TaskParameter="CopiedFiles" ItemName="PackageFiles" />
+    </Copy>
+    <Message Text="Copied to output: %(PackageFiles.Identity)" />
+    <!-- Build .ddf file -->
+    <WriteLinesToFile File="$(CabDefinitionFile)" Overwrite="true" Lines="@(CabDefinition);@(ContentToPack-> '%(Identity) %(Identity)');@(ProjectReferenceOutputs->'%(Filename)%(Extension)')" />
+    <!-- Exec makecab -->
+    <Exec Command="makecab.exe /F $(CabDefinitionFile)" />
+    <!-- Set MainAssembly -->
+    <CreateItem Include="$(CabFile)">
+      <Output TaskParameter="Include" ItemName="MainAssembly" />
+    </CreateItem>
+    <Message Importance="High" Text="$(MSBuildProjectName) -&gt; @(MainAssembly->'%(FullPath)')" />
+    <!-- Add output files to clean list -->
+    <ItemGroup>
+      <FileWrites Include="$(CabFile);@(PackageFiles);$(CabDefinitionFile);$(CabInfFile);$(CabReportFile)" />
+    </ItemGroup>
+    <!-- Persist clean list as as CleanFile -->
+    <WriteLinesToFile File="$(IntermediateOutputPath)$(CleanFile)" Lines="@(FileWrites)" Overwrite="true" />
+    <Message Text="Finished CorePack" />
+  </Target>
+  <Target Name="SignPack" Condition="'$(SignAssembly)' == 'true'">
+    <GetFrameworkSdkPath>
+      <Output TaskParameter="Path" PropertyName="FrameworkSdkPath" />
+    </GetFrameworkSdkPath>
+    <CreateProperty Value="$(FrameworkSdkPath)bin\signtool.exe">
+      <Output TaskParameter="Value" PropertyName="SignToolPath" />
+    </CreateProperty>
+    <Exec Command="&quot;$(SignToolPath)&quot; @(SignToolArgument, ' ') &quot;@(MainAssembly->'%(FullPath)')&quot;" />
+    <Exec Command="&quot;$(SignToolPath)&quot; @(SignToolVerifyArgument, ' ') &quot;@(MainAssembly->'%(FullPath)')&quot;" ContinueOnError="true" Condition="'$(VerifySignature)' == 'True'" />
+  </Target>
+  <Target Name="AfterPack" />
+  <Target Name="AfterClean">
+    <Message Text="Starting AfterClean" />
+    <!--Build list of content directories with OutputPath as base-->
+    <CreateItem Include="@(Content->'$(OutputPath)%(RelativeDir)')" Condition="%(RelativeDir) != ''" ContinueOnError="true">
+      <Output ItemName="DirectoriesToDelete" TaskParameter="Include" />
+    </CreateItem>
+    <!--Remove any remaining content directories after "Clean"-->
+    <RemoveDir Directories="@(DirectoriesToDelete)" Condition="Exists('%(DirectoriesToDelete.FullPath)')" ContinueOnError="true" />
+    <Message Text="Finished AfterClean" />
+  </Target>
+  <Target Name="BeforePack">
+  </Target>
+  <Target Name="AfterPack">
+    <Copy SourceFiles="$(OutputPath)$(PackageName)" DestinationFolder="$(ProjectDir)..\Release" ContinueOnError="false" />
+  </Target>
 </Project>
