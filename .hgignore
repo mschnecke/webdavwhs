@@ -6,3 +6,7 @@ syntax: glob
 _ReSharper.Solution/*
 WebDavWhs.Setup/bin/*
 *StyleCop.Cache
+*.sdf
+TestApp/bin/*
+*.user
+WebDavWhs.Library/bin/*
