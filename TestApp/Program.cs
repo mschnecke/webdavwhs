@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using WebDavWhs;
 
 namespace TestApp
@@ -14,6 +11,8 @@ namespace TestApp
 			Trace.Listeners.Add(new ConsoleTraceListener());
 			Trace.AutoFlush = true;
 
+			const string virtDir = "webdav";
+			const string physPath = @"D:\ServerFolders";
 
 			Iis iis = new Iis();
 
@@ -21,11 +20,16 @@ namespace TestApp
 			{
 				iis.SetWebDavStatus(true, true);
 
+				iis.CreateVirtualDirectory(virtDir, physPath);
 
-				iis.SetWebDavStatus(false, true);
+				string defaultWebSite = iis.GetDefaultWebSite();
 
-
-
+				iis.SetAnonymousAuthentication(defaultWebSite + "/" + virtDir, false);
+				
+				iis.SetBasicAuthentication(defaultWebSite + "/" + virtDir, false);
+				
+				iis.SetWindowsAuthentication(defaultWebSite + "/" + virtDir, true);
+				
 			}
 			catch (Exception exception)
 			{
@@ -35,10 +39,6 @@ namespace TestApp
 			{
 				iis.Dispose();
 			}
-
-
-
-
 		}
 	}
 }
