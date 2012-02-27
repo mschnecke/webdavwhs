@@ -1,3 +1,9 @@
+//----------------------------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" >
+//     Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.
+// </copyright>
+//----------------------------------------------------------------------------------------
+
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -6,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Copyright (c) 2012")]
+[assembly: AssemblyCopyright("Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

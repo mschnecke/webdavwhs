@@ -1,3 +1,9 @@
+//----------------------------------------------------------------------------------------
+// <copyright file="IMsiSessionLogger.cs" >
+//     Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.
+// </copyright>
+//----------------------------------------------------------------------------------------
+
 namespace WebDavWhs.CustomAction.Common
 {
 	/// <summary>

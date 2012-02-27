@@ -1,4 +1,10 @@
-﻿using Microsoft.Deployment.WindowsInstaller;
+﻿//----------------------------------------------------------------------------------------
+// <copyright file="MsiSessionLogger.cs" >
+//     Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.
+// </copyright>
+//----------------------------------------------------------------------------------------
+
+using Microsoft.Deployment.WindowsInstaller;
 
 namespace WebDavWhs.CustomAction.Common
 {

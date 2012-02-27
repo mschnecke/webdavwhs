@@ -1,20 +1,20 @@
 //----------------------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="ThinPrint AG">
-//     Copyright (c) 2010, ThinPrint AG. All rights reserved.
+// <copyright file="AssemblyInfo.cs" >
+//     Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.
 // </copyright>
 //----------------------------------------------------------------------------------------
 
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("ThinPrint.Managed.CustomAction")]
-[assembly: AssemblyDescription("ThinPrint.Managed.CustomAction")]
-[assembly: AssemblyCompany("Cortado AG")]
-[assembly: AssemblyProduct("ThinPrint.Managed.CustomAction")]
-[assembly: AssemblyCopyright("Copyright (c) 2011 Cortado AG.")]
+[assembly: AssemblyTitle("WebDavWhs.CustomAction")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("WebDAV for WHS")]
+[assembly: AssemblyCopyright("Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("3bf46b99-0c30-41af-8364-5f800ff90f4b")]
+[assembly: Guid("10EB810D-AD83-4238-A358-7F446195BDB4")]
 [assembly: AssemblyVersion("1.0.5.0")]
 [assembly: AssemblyFileVersion("1.0.5.0")]
