@@ -1,4 +1,10 @@
-﻿using System;
+﻿//----------------------------------------------------------------------------------------
+// <copyright file="WixSetProductVersion.cs" >
+//     Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.
+// </copyright>
+//----------------------------------------------------------------------------------------
+
+using System;
 using System.Text;
 using System.Xml;
 using Microsoft.Build.Framework;

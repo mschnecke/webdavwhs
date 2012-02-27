@@ -1,4 +1,10 @@
-﻿using System.Diagnostics;
+﻿//----------------------------------------------------------------------------------------
+// <copyright file="ProcessHelper.cs" >
+//     Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.
+// </copyright>
+//----------------------------------------------------------------------------------------
+
+using System.Diagnostics;
 
 namespace WebDavWhs.CustomAction
 {

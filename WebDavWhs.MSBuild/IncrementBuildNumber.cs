@@ -1,4 +1,10 @@
-﻿using System;
+﻿//----------------------------------------------------------------------------------------
+// <copyright file="IncrementBuildNumber.cs" >
+//     Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.
+// </copyright>
+//----------------------------------------------------------------------------------------
+
+using System;
 using System.IO;
 using System.Text;
 using Microsoft.Build.Framework;
