@@ -82,12 +82,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WebDavWhs.Library\WebDavWhs.Library.csproj">
-      <Project>{F65D0C41-80E4-495D-8162-82F26F608796}</Project>
-      <Name>WebDavWhs.Library</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
   </Target>

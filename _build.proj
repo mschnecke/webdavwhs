@@ -9,6 +9,7 @@
 	<PropertyGroup>
 		<ProjectMSBuild>WebDavWhs.MSBuild</ProjectMSBuild>
 		<ProjectCustomAction>WebDavWhs.CustomAction</ProjectCustomAction>
+		<ProjectWhsAddin>WebDavWhs.WSSTabExtender</ProjectWhsAddin>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -22,12 +23,21 @@
 		<ProjRefCustomAction Include="$(MSBuildProjectDirectory)\$(ProjectCustomAction)\$(ProjectCustomAction).csproj" />
 		<ProjRefSetup Include="$(MSBuildProjectDirectory)\WebDavWhs.Setup\WebDavWhs.Setup.wixproj" />
 		<ProjRefPackage Include="$(MSBuildProjectDirectory)\WssxAddInPackage\WssxAddInPackage.wssxproj" />
+		<ProjRefWhsAddin Include="$(MSBuildProjectDirectory)\$(ProjectWhsAddin)\$(ProjectWhsAddin).csproj" />
 	</ItemGroup>
 
-	<Target Name="Library">
-	</Target>
+	<Target Name="DashboardAddin" >
 
-	<Target Name="DashboardAddin" DependsOnTargets="Library">
+		<!--increment the build number in AssemblyInfo file-->
+		<IncrementBuildNumber FilePath="$(MSBuildProjectDirectory)\$(ProjectWhsAddin)\Properties\AssemblyInfo.cs" />
+
+		<!--build-->
+		<MSBuild Projects="@(ProjRefWhsAddin)"
+						 Properties="Configuration=Release;Platform=AnyCPU"
+						 StopOnFirstFailure="true"
+						 Targets="Rebuild">
+		</MSBuild>
+		
 	</Target>
 
 	<Target Name="Installer" DependsOnTargets="DashboardAddin">

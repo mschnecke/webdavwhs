@@ -9,4 +9,5 @@ WebDavWhs.Setup/bin/*
 *.sdf
 TestApp/bin/*
 *.user
-WebDavWhs.Library/bin/*
+WebDavWhs.WSSTabExtender/bin/*
+WssxAddInPackage/bin/*
