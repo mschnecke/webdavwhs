@@ -8,6 +8,8 @@
 
 		<Feature Id='Complete' Level='1'>
 			<ComponentRef Id='WebDavWhs.addin'/>
+			<ComponentRef Id='WebDavWhs.dll'/>
+			<ComponentRef Id='WebDavWhs.resources.dll_de'/>
 		</Feature>
 
 		<DirectoryRef Id="TARGETDIR"/>

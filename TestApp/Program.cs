@@ -6,7 +6,7 @@
 
 using System;
 using System.Diagnostics;
-using WebDavWhs;
+
 
 namespace TestApp
 {
@@ -20,31 +20,31 @@ namespace TestApp
 			const string virtDir = "webdav";
 			const string physPath = @"D:\ServerFolders";
 
-			Iis iis = new Iis();
+			//Iis iis = new Iis();
 
-			try
-			{
-				iis.SetWebDavStatus(true, true);
+			//try
+			//{
+			//    iis.SetWebDavStatus(true, true);
 
-				iis.CreateVirtualDirectory(virtDir, physPath);
+			//    iis.CreateVirtualDirectory(virtDir, physPath);
 
-				string defaultWebSite = iis.GetDefaultWebSite();
+			//    string defaultWebSite = iis.GetDefaultWebSite();
 
-				iis.SetAnonymousAuthentication(defaultWebSite + "/" + virtDir, false);
+			//    iis.SetAnonymousAuthentication(defaultWebSite + "/" + virtDir, false);
 				
-				iis.SetBasicAuthentication(defaultWebSite + "/" + virtDir, false);
+			//    iis.SetBasicAuthentication(defaultWebSite + "/" + virtDir, false);
 				
-				iis.SetWindowsAuthentication(defaultWebSite + "/" + virtDir, true);
+			//    iis.SetWindowsAuthentication(defaultWebSite + "/" + virtDir, true);
 				
-			}
-			catch (Exception exception)
-			{
+			//}
+			//catch (Exception exception)
+			//{
 
-			}
-			finally
-			{
-				iis.Dispose();
-			}
+			//}
+			//finally
+			//{
+			//    iis.Dispose();
+			//}
 		}
 	}
 }

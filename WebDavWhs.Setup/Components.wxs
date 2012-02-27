@@ -5,7 +5,15 @@
 		<Directory Id='TARGETDIR' Name='SourceDir'>
 			<Directory Id='ProgramFiles64Folder' Name='PFiles'>
 				<Directory Id='WEBDAV4WHS' Name='WebDAV for WHS'>
-					<!--TODO: components -->
+					<Component Id='WebDavWhs.dll' Guid='{DB696CDD-B10A-436A-88DE-A8E45A929620}' Shared='yes' Win64='yes'>
+						<RemoveFolder Id='RemWEBDAV4WHS' On='uninstall' />
+						<File Id='WebDavWhs.dll' Source='$(var.SourceDir)\WebDavWhs.dll' KeyPath='yes' />
+					</Component>
+					<Directory Id='DE' Name='de'>
+						<Component Id='WebDavWhs.resources.dll_de' Guid='{5AE19186-DA5C-4446-B5D4-72F77567B4D6}' Shared='yes' Win64='yes'>
+							<File Id='WebDavWhs.resources.dll_de' Source='$(var.SourceDir)\de\WebDavWhs.resources.dll' KeyPath='yes' />
+						</Component>
+					</Directory>			
 				</Directory>
 				<Directory Id='WindowsServerDir' Name='Windows Server'>
 					<Directory Id='WindowsServerBinDir' Name='Bin'>
