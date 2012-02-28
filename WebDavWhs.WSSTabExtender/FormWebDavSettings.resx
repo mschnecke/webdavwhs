@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddInName" xml:space="preserve">
-    <value>WebDAV for WHS</value>
-  </data>
-  <data name="ConfigureWebdav" xml:space="preserve">
-    <value>Configure WebDAV</value>
-  </data>
-  <data name="Error_VirtDirName" xml:space="preserve">
-    <value>Enter an alias name for the virtual directory.</value>
-  </data>
-  <data name="PlaceholderUrl" xml:space="preserve">
-    <value>https://localhost/{0}/</value>
-  </data>
-  <data name="Question_Overwite" xml:space="preserve">
-    <value>The virtual directory or a web application with the alias '{0}' already exists. Do you want to re-create the virtual directory?</value>
-  </data>
+  <metadata name="errorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="errorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>
