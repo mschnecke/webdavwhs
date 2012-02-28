@@ -112,15 +112,24 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="GlobalTask_Disable" xml:space="preserve">
-    <value>WebDAV deaktivieren</value>
+  <data name="AddInName" xml:space="preserve">
+    <value>WebDAV for WHS</value>
   </data>
-  <data name="GlobalTask_Enable" xml:space="preserve">
-    <value>WebDAV aktivieren</value>
+  <data name="ConfigureWebdav" xml:space="preserve">
+    <value>WebDAV konfigurieren</value>
+  </data>
+  <data name="Error_VirtDirName" xml:space="preserve">
+    <value>Geben Sie einen Aliasnamen für das Virtuelle Verzeichnis an.</value>
+  </data>
+  <data name="PlaceholderUrl" xml:space="preserve">
+    <value>https://localhost/{0}/</value>
+  </data>
+  <data name="Question_Overwite" xml:space="preserve">
+    <value>Das virtuelle Verzeichnis mit dem Aliasnamen '{0}' existriert bereits. Wollen Sie das virtuelle Verzeichnis neu erstellen?</value>
   </data>
 </root>

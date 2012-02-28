@@ -61,20 +61,47 @@ namespace WebDavWhs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable WebDAV.
+        ///   Looks up a localized string similar to WebDAV for WHS.
         /// </summary>
-        internal static string GlobalTask_Disable {
+        internal static string AddInName {
             get {
-                return ResourceManager.GetString("GlobalTask_Disable", resourceCulture);
+                return ResourceManager.GetString("AddInName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable WebDAV.
+        ///   Looks up a localized string similar to Configure WebDAV.
         /// </summary>
-        internal static string GlobalTask_Enable {
+        internal static string ConfigureWebdav {
             get {
-                return ResourceManager.GetString("GlobalTask_Enable", resourceCulture);
+                return ResourceManager.GetString("ConfigureWebdav", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter an alias name for the virtual directory..
+        /// </summary>
+        internal static string Error_VirtDirName {
+            get {
+                return ResourceManager.GetString("Error_VirtDirName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://localhost/{0}/.
+        /// </summary>
+        internal static string PlaceholderUrl {
+            get {
+                return ResourceManager.GetString("PlaceholderUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The virtual directory or a web application with the alias &apos;{0}&apos; already exists. Do you want to re-create the virtual directory?.
+        /// </summary>
+        internal static string Question_Overwite {
+            get {
+                return ResourceManager.GetString("Question_Overwite", resourceCulture);
             }
         }
     }

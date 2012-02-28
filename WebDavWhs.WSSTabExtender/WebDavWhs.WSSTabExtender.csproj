@@ -83,6 +83,7 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
@@ -90,6 +91,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationSettings.cs" />
+    <Compile Include="FormsWebDavConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsWebDavConfig.Designer.cs">
+      <DependentUpon>FormsWebDavConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Iis.cs" />
     <Compile Include="PageAdorner.cs" />
     <Compile Include="ListAdorner.cs" />
@@ -125,6 +133,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormsWebDavConfig.resx">
+      <DependentUpon>FormsWebDavConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StringResource.de.resx" />
     <EmbeddedResource Include="StringResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -27,7 +27,6 @@ namespace WebDavWhs
 		/// </summary>
 		public override void StopListeningForUpdates()
 		{
-			
 		}
 	}
 }
