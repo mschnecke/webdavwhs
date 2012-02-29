@@ -18,10 +18,10 @@ namespace WebDavWhs
 	public class ApplicationSettings
 	{
 		/// <summary>
-		/// Gets or sets a value indicating whether the logging is enabled or not.
+		/// Gets or sets a value indicating whether [enable logging].
 		/// </summary>
 		/// <value>
-		///   <c>true</c> if logging is enabled; otherwise, <c>false</c>.
+		///   <c>true</c> if [enable logging]; otherwise, <c>false</c>.
 		/// </value>
 		public bool EnableLogging
 		{

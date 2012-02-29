@@ -6,7 +6,6 @@
 
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Windows.Forms;
 
 namespace WebDavWhs
@@ -14,35 +13,13 @@ namespace WebDavWhs
 	/// <summary>
 	/// 	The webdav configuration form.
 	/// </summary>
-	public partial class FormsWebDavConfig : Form
+	internal partial class FormsWebDavConfig : Form
 	{
 		/// <summary>
-		/// 	Gets or sets the IIS.
+		/// 	Gets or sets the core.
 		/// </summary>
-		/// <value> The IIS. </value>
-		private Iis Iis
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// 	Gets or sets the settings.
-		/// </summary>
-		/// <value> The settings. </value>
-		private ApplicationSettings Settings
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the trace listener.
-		/// </summary>
-		/// <value>
-		/// The trace listener.
-		/// </value>
-		private TextWriterTraceListener TraceListener
+		/// <value> The core. </value>
+		private Core Core
 		{
 			get;
 			set;
@@ -51,39 +28,11 @@ namespace WebDavWhs
 		/// <summary>
 		/// 	Initializes a new instance of the <see cref="FormsWebDavConfig" /> class.
 		/// </summary>
-		public FormsWebDavConfig()
+		/// <param name="core"> The core. </param>
+		public FormsWebDavConfig(Core core)
 		{
+			this.Core = core;
 			this.InitializeComponent();
-			this.InitializeComponentEx();
-		}
-
-		/// <summary>
-		/// 	Releases unmanaged resources and performs other cleanup operations before the <see cref="FormsWebDavConfig" /> is reclaimed by garbage collection.
-		/// </summary>
-		~FormsWebDavConfig()
-		{
-			this.Cleanup();
-		}
-
-		/// <summary>
-		/// 	Initializes aditional components.
-		/// </summary>
-		private void InitializeComponentEx()
-		{
-			this.Iis = new Iis();
-			this.Settings = new ApplicationSettings();
-			this.EnableLogger(this.Settings.EnableLogging);
-		}
-
-		/// <summary>
-		/// 	Cleanups this instance.
-		/// </summary>
-		private void Cleanup()
-		{
-			if(this.Iis != null)
-			{
-				this.Iis.Dispose();
-			}
 		}
 
 		/// <summary>
@@ -99,37 +48,34 @@ namespace WebDavWhs
 
 			try
 			{
-				// load settings
-				this.Settings = ApplicationSettings.LoadSettings();
-
 				// validate webdav state
-				webDavStatus = this.Iis.GetWebDavStatus();
+				webDavStatus = this.Core.Iis.GetWebDavStatus();
 			}
 			catch(Exception exception)
 			{
 				Trace.TraceError(exception.ToString());
 			}
 
-			switch(webDavStatus)
+			switch (webDavStatus)
 			{
 				case WebDavStatus.Enabled:
-					this.Settings.WebDavEnabled = true;
+					this.Core.Settings.WebDavEnabled = true;
 					break;
 				case WebDavStatus.Disabled:
-					this.Settings.WebDavEnabled = false;
+					this.Core.Settings.WebDavEnabled = false;
 					break;
 				default:
-					this.Settings.WebDavEnabled = false;
+					this.Core.Settings.WebDavEnabled = false;
 					break;
 			}
 
 			try
 			{
 				// validate whether the virtual directory already exists or not.
-				string defaultWebSiteName = this.Iis.GetDefaultWebSite();
-				if(this.Iis.ExistsVirtualDirectory(defaultWebSiteName, this.Settings.VirtualDirectoryAlias) == false)
+				string defaultWebSiteName = this.Core.Iis.GetDefaultWebSite();
+				if (this.Core.Iis.ExistsVirtualDirectory(defaultWebSiteName, this.Core.Settings.VirtualDirectoryAlias) == false)
 				{
-					this.Settings.WebDavEnabled = false;
+					this.Core.Settings.WebDavEnabled = false;
 				}
 			}
 			catch(Exception exception)
@@ -138,6 +84,7 @@ namespace WebDavWhs
 			}
 
 			this.PopulateData();
+			Trace.TraceInformation("FormsWebDavConfigLoad...finished.");
 		}
 
 		/// <summary>
@@ -147,37 +94,26 @@ namespace WebDavWhs
 		/// <param name="e"> The <see cref="System.Windows.Forms.FormClosingEventArgs" /> instance containing the event data. </param>
 		private void FormsWebDavConfigFormClosing(object sender, FormClosingEventArgs e)
 		{
+			Trace.TraceInformation("FormsWebDavConfigFormClosing...");
+
 			if(this.DialogResult != DialogResult.OK)
 			{
+				Trace.TraceInformation("FormsWebDavConfigFormClosing...finished.");
 				return;
 			}
 
 			this.CollectData();
-			
+
 			try
 			{
-				string defaultWebSiteName = this.Iis.GetDefaultWebSite();
+				string defaultWebSiteName = this.Core.Iis.GetDefaultWebSite();
 
-				if (this.Settings.WebDavEnabled)
+				if(this.Core.Settings.WebDavEnabled)
 				{
-					// check whether the virtual directory already exists or not and ask user for proceeding
-					if (this.Iis.ExistsVirtualDirectory(defaultWebSiteName, this.Settings.VirtualDirectoryAlias))
-					{
-						if (MessageBox.Show(string.Format(StringResource.Question_Overwite, this.Settings.VirtualDirectoryAlias), StringResource.AddInName, MessageBoxButtons.YesNo) != DialogResult.Yes)
-						{
-							e.Cancel = true;
-							return;
-						}
-
-
-						// todo: remove the virtual directory
-
-					}
-
 					// enable WebDAV
-					if (this.Iis.GetWebDavStatus() != WebDavStatus.Enabled)
+					if (this.Core.Iis.GetWebDavStatus() != WebDavStatus.Enabled)
 					{
-						this.Iis.SetWebDavStatus(true, true);
+						this.Core.Iis.SetWebDavStatus(true, true);
 					}
 
 					//// create virtual directory
@@ -191,24 +127,25 @@ namespace WebDavWhs
 				}
 				else
 				{
-					
 				}
 			}
 			catch(Exception exception)
 			{
-				MessageBox.Show(exception.Message);
+				Trace.TraceError(exception.ToString());
 				e.Cancel = true;
 				return;
 			}
 
 			try
 			{
-				ApplicationSettings.SaveSettings(this.Settings);
+				ApplicationSettings.SaveSettings(this.Core.Settings);
 			}
 			catch(Exception exception)
 			{
 				Trace.TraceError(exception.ToString());
 			}
+
+			Trace.TraceInformation("FormsWebDavConfigFormClosing...finished.");
 		}
 
 		/// <summary>
@@ -216,7 +153,7 @@ namespace WebDavWhs
 		/// </summary>
 		private void PopulateData()
 		{
-			if(this.Settings.WebDavEnabled)
+			if(this.Core.Settings.WebDavEnabled)
 			{
 				this.rbEnable.Checked = true;
 			}
@@ -225,13 +162,13 @@ namespace WebDavWhs
 				this.rbDisable.Checked = true;
 			}
 
-			if(string.IsNullOrEmpty(this.Settings.VirtualDirectoryAlias))
+			if(string.IsNullOrEmpty(this.Core.Settings.VirtualDirectoryAlias))
 			{
-				this.Settings.VirtualDirectoryAlias = "webdav";
+				this.Core.Settings.VirtualDirectoryAlias = "webdav";
 			}
 
-			this.tbVirtDir.Text = this.Settings.VirtualDirectoryAlias;
-			this.cbLogging.Checked = this.Settings.EnableLogging;
+			this.tbVirtDir.Text = this.Core.Settings.VirtualDirectoryAlias;
+			this.cbLogging.Checked = this.Core.Settings.EnableLogging;
 
 			this.ValidateControls();
 		}
@@ -241,9 +178,9 @@ namespace WebDavWhs
 		/// </summary>
 		private void CollectData()
 		{
-			this.Settings.WebDavEnabled = this.rbEnable.Checked;
-			this.Settings.VirtualDirectoryAlias = this.tbVirtDir.Text;
-			this.Settings.EnableLogging = this.cbLogging.Checked;
+			this.Core.Settings.WebDavEnabled = this.rbEnable.Checked;
+			this.Core.Settings.VirtualDirectoryAlias = this.tbVirtDir.Text;
+			this.Core.Settings.EnableLogging = this.cbLogging.Checked;
 		}
 
 		/// <summary>
@@ -307,43 +244,13 @@ namespace WebDavWhs
 		}
 
 		/// <summary>
-		/// Handles the LinkClicked event of the lilaLink control.
+		/// 	Handles the LinkClicked event of the lilaLink control.
 		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="System.Windows.Forms.LinkLabelLinkClickedEventArgs"/> instance containing the event data.</param>
+		/// <param name="sender"> The sender. </param>
+		/// <param name="e"> The <see cref="System.Windows.Forms.LinkLabelLinkClickedEventArgs" /> instance containing the event data. </param>
 		private void LilaLogFileLocationLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			Process.Start(this.Settings.ApplicationDataFolder);
-		}
-
-		/// <summary>
-		/// Enables the logger.
-		/// </summary>
-		/// <param name="enable">if set to <c>true</c> [enable].</param>
-		private void EnableLogger(bool enable)
-		{
-			const string tracelistenerName = "WEBDAVWHSTL";
-
-			try
-			{
-				if(enable)
-				{
-					string logfile = Path.Combine(this.Settings.ApplicationDataFolder, "logfile.txt");
-					TextWriterTraceListener traceListener = new TextWriterTraceListener(logfile, tracelistenerName);
-					Trace.Listeners.Add(traceListener);
-					Trace.AutoFlush = true;
-
-					Trace.TraceInformation("EnableLogger...");
-				}
-				else
-				{
-					Trace.Listeners.Remove(tracelistenerName);
-				}
-			}
-			catch (Exception exception)
-			{
-				Trace.TraceError(exception.ToString());
-			}
+			Process.Start(this.Core.Settings.ApplicationDataFolder);
 		}
 	}
 }
