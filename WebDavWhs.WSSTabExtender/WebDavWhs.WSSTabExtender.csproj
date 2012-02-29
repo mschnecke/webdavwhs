@@ -71,9 +71,15 @@
     <Reference Include="Microsoft.windowsserversolutions.administration.objectmodel">
       <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows Server Solutions\6.1\Library\Microsoft.windowsserversolutions.administration.objectmodel.dll</HintPath>
     </Reference>
+    <Reference Include="ProviderFramework">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows Server Solutions\6.1\Library\ProviderFramework.dll</HintPath>
+    </Reference>
     <Reference Include="SettingsObjectModel">
       <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows Server Solutions\6.1\Library\SettingsObjectModel.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="StorageOM">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows Server Solutions\6.1\Library\StorageOM.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -92,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationSettings.cs" />
+    <Compile Include="Core.cs" />
     <Compile Include="FormsWebDavConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +109,9 @@
     <Compile Include="PageAdorner.cs" />
     <Compile Include="ListAdorner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerFolder.cs" />
+    <Compile Include="Storage.cs" />
+    <Compile Include="StoragePropertyEventArgs.cs" />
     <Compile Include="StringResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

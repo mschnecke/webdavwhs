@@ -3,13 +3,13 @@
   <!-- See http://msdn.microsoft.com/en-us/library/gg513981.aspx for Metadata XML Schema Reference -->
   <!-- ProductCode elements must match Product ID of target MSI package -->
   <Id>{2A8C5FBA-2DFE-4E9B-B239-EE9F6D32994B}</Id>
-  <Version>1.0.20.0</Version>
+  <Version>1.0.34.0</Version>
   <Name>WebDAV for WHS</Name>
   <Allow32BitOn64BitClients>false</Allow32BitOn64BitClients>
   <ServerBinary>
     <File>
       <ProductCode>{A6090CE5-E9FF-4BD7-8A62-C99906719D9C}</ProductCode>
-      <Version>1.0.20.0</Version>
+      <Version>1.0.34.0</Version>
       <Name>WebDavWhs.AddIn.msi</Name>
       <Filter>
         <Language>en-US</Language>

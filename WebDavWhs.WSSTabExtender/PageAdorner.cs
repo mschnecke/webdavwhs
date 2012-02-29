@@ -5,6 +5,8 @@
 //----------------------------------------------------------------------------------------
 
 using System;
+using System.Diagnostics;
+using System.IO;
 using Microsoft.WindowsServerSolutions.Administration.ObjectModel;
 using Microsoft.WindowsServerSolutions.Administration.ObjectModel.Adorners;
 
@@ -16,11 +18,67 @@ namespace WebDavWhs
 	public class PageAdorner : PageContentAdorner
 	{
 		/// <summary>
+		/// 	Gets or sets the core.
+		/// </summary>
+		/// <value> The core. </value>
+		private Core Core
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// 	Initializes a new instance of the <see cref="PageAdorner" /> class.
 		/// </summary>
 		public PageAdorner()
 			: base(new Guid("{572F7115-00BC-4E0F-B466-23FA6468219C}"), "WebDAV for WHS Add-in", "WebDAV for WHS Add-in")
 		{
+			this.Initialize();
+		}
+
+		/// <summary>
+		/// 	Releases unmanaged resources and performs other cleanup operations before the <see cref="PageAdorner" /> is reclaimed by garbage collection.
+		/// </summary>
+		~PageAdorner()
+		{
+			try
+			{
+				if(this.Core != null)
+				{
+					this.Core.Dispose();
+				}
+			}
+			catch(Exception exception)
+			{
+				Trace.TraceError(exception.ToString());
+			}
+		}
+
+		/// <summary>
+		/// 	Initializes this instance.
+		/// </summary>
+		private void Initialize()
+		{
+			try
+			{
+				this.Core = new Core();
+				this.Core.Storage.Connect();
+			}
+			catch(Exception exception)
+			{
+				Trace.TraceError(exception.ToString());
+			}
+
+			try
+			{
+				this.Core.Settings = ApplicationSettings.LoadSettings();
+				this.InitializeLogging();
+			}
+			catch(Exception exception)
+			{
+				Trace.TraceError(exception.ToString());
+				this.Core.Settings = new ApplicationSettings();
+			}
 		}
 
 		/// <summary>
@@ -33,12 +91,34 @@ namespace WebDavWhs
 			tasks.Add(new SyncUiTask(StringResource.ConfigureWebdav,
 			                         delegate
 			                         	{
-			                         		FormsWebDavConfig formsWebDavConfig = new FormsWebDavConfig();
+			                         		FormsWebDavConfig formsWebDavConfig = new FormsWebDavConfig(this.Core);
 			                         		formsWebDavConfig.ShowDialog();
 			                         		return null;
 			                         	}));
 
 			return tasks;
+		}
+
+		/// <summary>
+		/// Initializes the logging.
+		/// </summary>
+		private void InitializeLogging()
+		{
+			if (this.Core.Settings.EnableLogging == false)
+			{
+				return;
+			}
+
+			try
+			{
+				Trace.Listeners.Add(new TextWriterTraceListener(Path.Combine(this.Core.Settings.ApplicationDataFolder, "logfile.log")));
+				Trace.AutoFlush = true;
+				Trace.TraceInformation("Start logging...");
+			}
+			catch(Exception exception)
+			{
+				Trace.TraceError(exception.ToString());
+			}
 		}
 
 		/// <summary>
