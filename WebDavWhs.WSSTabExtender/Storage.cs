@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using Microsoft.WindowsServerSolutions.Common;
@@ -38,6 +39,17 @@ namespace WebDavWhs
 			set;
 		}
 
+		/// <summary>
+		/// 	Gets the folders.
+		/// </summary>
+		public Collection<Folder> Folders
+		{
+			get
+			{
+				return this.GetFolderCollection();
+			}
+		}
+
 		#region Lifecycle
 
 		/// <summary>
@@ -50,7 +62,7 @@ namespace WebDavWhs
 		}
 
 		/// <summary>
-		/// Initializes this instance.
+		/// 	Initializes this instance.
 		/// </summary>
 		private void Initialize()
 		{
@@ -93,19 +105,6 @@ namespace WebDavWhs
 		#endregion
 
 		/// <summary>
-		/// 	Refreshes this instance.
-		/// </summary>
-		public void Refresh()
-		{
-			Trace.TraceInformation("Refresh...");
-
-			this.Connect();
-			this.StorageManagerPropertyChanged(this, null);
-
-			Trace.TraceInformation("Refresh...finished.");
-		}
-
-		/// <summary>
 		/// 	Connects the storage mananger.
 		/// </summary>
 		public void Connect()
@@ -121,6 +120,30 @@ namespace WebDavWhs
 
 			this.StorageManager.ConnectAsync();
 			Trace.TraceInformation("Connect...finished.");
+		}
+
+		/// <summary>
+		/// 	Gets the folder collection.
+		/// </summary>
+		/// <returns> The folder collection. </returns>
+		private Collection<Folder> GetFolderCollection()
+		{
+			Trace.TraceInformation("GetFolderCollection...");
+
+			if(this.StorageManager.Connected == false)
+			{
+				this.StorageManager.Connect(10000);
+			}
+
+			Collection<Folder> collection = new Collection<Folder>();
+
+			foreach(Folder folder in this.StorageManager.Folders)
+			{
+				collection.Add(folder);
+			}
+
+			Trace.TraceInformation("GetFolderCollection...finished.");
+			return collection;
 		}
 
 		/// <summary>

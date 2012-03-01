@@ -49,14 +49,15 @@ namespace WebDavWhs
 			try
 			{
 				// validate webdav state
-				webDavStatus = this.Core.Iis.GetWebDavStatus();
+				string defaultWebSiteName = this.Core.Iis.GetDefaultWebSite();
+				webDavStatus = this.Core.Iis.GetWebDavStatus(defaultWebSiteName);
 			}
 			catch(Exception exception)
 			{
 				Trace.TraceError(exception.ToString());
 			}
 
-			switch (webDavStatus)
+			switch(webDavStatus)
 			{
 				case WebDavStatus.Enabled:
 					this.Core.Settings.WebDavEnabled = true;
@@ -73,7 +74,7 @@ namespace WebDavWhs
 			{
 				// validate whether the virtual directory already exists or not.
 				string defaultWebSiteName = this.Core.Iis.GetDefaultWebSite();
-				if (this.Core.Iis.ExistsVirtualDirectory(defaultWebSiteName, this.Core.Settings.VirtualDirectoryAlias) == false)
+				if(this.Core.Iis.ExistsVirtualDirectory(defaultWebSiteName, @"/", this.Core.Settings.VirtualDirectoryAlias) == false)
 				{
 					this.Core.Settings.WebDavEnabled = false;
 				}
@@ -106,27 +107,13 @@ namespace WebDavWhs
 
 			try
 			{
-				string defaultWebSiteName = this.Core.Iis.GetDefaultWebSite();
-
 				if(this.Core.Settings.WebDavEnabled)
 				{
-					// enable WebDAV
-					if (this.Core.Iis.GetWebDavStatus() != WebDavStatus.Enabled)
-					{
-						this.Core.Iis.SetWebDavStatus(true, true);
-					}
-
-					//// create virtual directory
-					//string serverFolderPath = ""; //TODO get server folder root
-					//this.Iis.CreateVirtualDirectory(this.Settings.VirtualDirectoryAlias, serverFolderPath);
-
-					//// set authentication
-					//this.Iis.SetAnonymousAuthentication(string.Format("{0}/{1}", defaultWebSiteName, this.Settings.VirtualDirectoryAlias), false);
-					//this.Iis.SetBasicAuthentication(string.Format("{0}/{1}", defaultWebSiteName, this.Settings.VirtualDirectoryAlias), false);
-					//this.Iis.SetWindowsAuthentication(string.Format("{0}/{1}", defaultWebSiteName, this.Settings.VirtualDirectoryAlias), true);
+					this.Core.EnableWebDav();
 				}
 				else
 				{
+					this.Core.DisableWebDav();
 				}
 			}
 			catch(Exception exception)

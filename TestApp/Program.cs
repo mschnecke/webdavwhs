@@ -4,26 +4,37 @@
 // </copyright>
 //----------------------------------------------------------------------------------------
 
+
 using System;
 using System.Diagnostics;
-using NLog;
-using NLog.Config;
-using NLog.Targets;
 
-
-namespace TestApp
+namespace WebDavWhs
 {
-	class Program
+	internal class Program
 	{
-		
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
-			
+			Core core = new Core();
 
-			Trace.TraceInformation("lsdkgj");
+			try
+			{
+				//core.Settings = ApplicationSettings.LoadSettings();
+
+				//core.EnableWebDav();
+
+				//core.DisableWebDav();
 
 
 
+			}
+			catch(Exception exception)
+			{
+				Trace.TraceError(exception.ToString());
+			}
+			finally
+			{
+				core.Dispose();
+			}
 		}
 	}
 }
