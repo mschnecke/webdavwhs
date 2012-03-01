@@ -8,10 +8,11 @@
     <ProjectGuid>{D2463C0A-75E5-4DDA-9B5A-338277693F4C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestApp</RootNamespace>
+    <RootNamespace>WebDavWhs</RootNamespace>
     <AssemblyName>TestApp</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -76,8 +77,20 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Microsoft.Web.Administration">
+      <HintPath>..\Library\Microsoft.Web.Administration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.windowsserversolutions.administration.objectmodel">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows Server Solutions\6.1\Library\Microsoft.windowsserversolutions.administration.objectmodel.dll</HintPath>
+    </Reference>
+    <Reference Include="ProviderFramework">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows Server Solutions\6.1\Library\ProviderFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="SettingsObjectModel">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows Server Solutions\6.1\Library\SettingsObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="StorageOM">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows Server Solutions\6.1\Library\StorageOM.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -87,10 +100,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\WebDavWhs.WSSTabExtender\ApplicationSettings.cs">
+      <Link>ApplicationSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\WebDavWhs.WSSTabExtender\Core.cs">
+      <Link>Core.cs</Link>
+    </Compile>
+    <Compile Include="..\WebDavWhs.WSSTabExtender\Iis.cs">
+      <Link>Iis.cs</Link>
+    </Compile>
+    <Compile Include="..\WebDavWhs.WSSTabExtender\ServerFolder.cs">
+      <Link>ServerFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\WebDavWhs.WSSTabExtender\Storage.cs">
+      <Link>Storage.cs</Link>
+    </Compile>
+    <Compile Include="..\WebDavWhs.WSSTabExtender\StoragePropertyEventArgs.cs">
+      <Link>StoragePropertyEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\WebDavWhs.WSSTabExtender\WebDavStatus.cs">
+      <Link>WebDavStatus.cs</Link>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="NLog.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -100,7 +135,7 @@
     <CreateItem Include="$(TargetDir)\*.*">
       <Output TaskParameter="Include" ItemName="TargetFiles" />
     </CreateItem>
-    <CreateProperty Value="192.168.40.132">
+    <CreateProperty Value="192.168.65.134">
       <Output TaskParameter="Value" PropertyName="RemoteHost" />
     </CreateProperty>
     <CreateProperty Value="WHS">
