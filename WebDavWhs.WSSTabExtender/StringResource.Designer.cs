@@ -61,15 +61,6 @@ namespace WebDavWhs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WebDAV for WHS.
-        /// </summary>
-        internal static string AddInName {
-            get {
-                return ResourceManager.GetString("AddInName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Configure WebDAV.
         /// </summary>
         internal static string ConfigureWebdav {
@@ -93,15 +84,6 @@ namespace WebDavWhs {
         internal static string PlaceholderUrl {
             get {
                 return ResourceManager.GetString("PlaceholderUrl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The virtual directory or a web application with the alias &apos;{0}&apos; already exists. Do you want to re-create the virtual directory?.
-        /// </summary>
-        internal static string Question_Overwite {
-            get {
-                return ResourceManager.GetString("Question_Overwite", resourceCulture);
             }
         }
     }

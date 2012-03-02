@@ -117,13 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ConfigureWebdav" xml:space="preserve">
-    <value>Configure WebDAV</value>
+  <data name="gbVirtDir.Text" xml:space="preserve">
+    <value>Alias für das virtuelle &amp;WebDAV-Verzeichnis</value>
   </data>
-  <data name="Error_VirtDirName" xml:space="preserve">
-    <value>Enter an alias name for the virtual directory.</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="rbDisable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 17</value>
   </data>
-  <data name="PlaceholderUrl" xml:space="preserve">
-    <value>https://localhost/{0}/</value>
+  <data name="rbDisable.Text" xml:space="preserve">
+    <value>WebDAV &amp;deaktivieren</value>
+  </data>
+  <data name="rbEnable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 17</value>
+  </data>
+  <data name="rbEnable.Text" xml:space="preserve">
+    <value>WebDAV &amp;aktivieren</value>
+  </data>
+  <data name="tpCommon.Text" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="lilaLogFileLocation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 13</value>
+  </data>
+  <data name="lilaLogFileLocation.Text" xml:space="preserve">
+    <value>Logdateiordner öffnen</value>
+  </data>
+  <data name="cbLogging.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 17</value>
+  </data>
+  <data name="cbLogging.Text" xml:space="preserve">
+    <value>&amp;Logging aktivieren</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>WebDAV konfigurieren</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Abbrechen</value>
   </data>
 </root>

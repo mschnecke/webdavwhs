@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormsWebDavConfig));
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.btnOk = new System.Windows.Forms.Button();
 			this.rbDisable = new System.Windows.Forms.RadioButton();
@@ -51,151 +52,140 @@
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			resources.ApplyResources(this.btnCancel, "btnCancel");
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(334, 314);
+			this.errorProvider.SetError(this.btnCancel, resources.GetString("btnCancel.Error"));
+			this.errorProvider.SetIconAlignment(this.btnCancel, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("btnCancel.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.btnCancel, ((int)(resources.GetObject("btnCancel.IconPadding"))));
 			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.Size = new System.Drawing.Size(75, 23);
-			this.btnCancel.TabIndex = 1;
-			this.btnCancel.Text = "Cancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
 			// 
 			// btnOk
 			// 
-			this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			resources.ApplyResources(this.btnOk, "btnOk");
 			this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.btnOk.Location = new System.Drawing.Point(253, 314);
+			this.errorProvider.SetError(this.btnOk, resources.GetString("btnOk.Error"));
+			this.errorProvider.SetIconAlignment(this.btnOk, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("btnOk.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.btnOk, ((int)(resources.GetObject("btnOk.IconPadding"))));
 			this.btnOk.Name = "btnOk";
-			this.btnOk.Size = new System.Drawing.Size(75, 23);
-			this.btnOk.TabIndex = 0;
-			this.btnOk.Text = "OK";
 			this.btnOk.UseVisualStyleBackColor = true;
 			// 
 			// rbDisable
 			// 
-			this.rbDisable.AutoSize = true;
+			resources.ApplyResources(this.rbDisable, "rbDisable");
 			this.rbDisable.Checked = true;
-			this.rbDisable.Location = new System.Drawing.Point(33, 31);
+			this.errorProvider.SetError(this.rbDisable, resources.GetString("rbDisable.Error"));
+			this.errorProvider.SetIconAlignment(this.rbDisable, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("rbDisable.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.rbDisable, ((int)(resources.GetObject("rbDisable.IconPadding"))));
 			this.rbDisable.Name = "rbDisable";
-			this.rbDisable.Size = new System.Drawing.Size(108, 17);
-			this.rbDisable.TabIndex = 0;
 			this.rbDisable.TabStop = true;
-			this.rbDisable.Text = "&Disable WebDAV";
 			this.rbDisable.UseVisualStyleBackColor = true;
 			this.rbDisable.CheckedChanged += new System.EventHandler(this.RbDisableCheckedChanged);
 			// 
 			// rbEnable
 			// 
-			this.rbEnable.AutoSize = true;
-			this.rbEnable.Location = new System.Drawing.Point(33, 54);
+			resources.ApplyResources(this.rbEnable, "rbEnable");
+			this.errorProvider.SetError(this.rbEnable, resources.GetString("rbEnable.Error"));
+			this.errorProvider.SetIconAlignment(this.rbEnable, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("rbEnable.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.rbEnable, ((int)(resources.GetObject("rbEnable.IconPadding"))));
 			this.rbEnable.Name = "rbEnable";
-			this.rbEnable.Size = new System.Drawing.Size(106, 17);
-			this.rbEnable.TabIndex = 1;
-			this.rbEnable.Text = "&Enable WebDAV";
 			this.rbEnable.UseVisualStyleBackColor = true;
 			this.rbEnable.CheckedChanged += new System.EventHandler(this.RbEnableCheckedChanged);
 			// 
 			// tbVirtDir
 			// 
-			this.tbVirtDir.Location = new System.Drawing.Point(18, 33);
+			resources.ApplyResources(this.tbVirtDir, "tbVirtDir");
+			this.errorProvider.SetError(this.tbVirtDir, resources.GetString("tbVirtDir.Error"));
+			this.errorProvider.SetIconAlignment(this.tbVirtDir, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tbVirtDir.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.tbVirtDir, ((int)(resources.GetObject("tbVirtDir.IconPadding"))));
 			this.tbVirtDir.Name = "tbVirtDir";
-			this.tbVirtDir.Size = new System.Drawing.Size(149, 20);
-			this.tbVirtDir.TabIndex = 0;
 			this.tbVirtDir.TextChanged += new System.EventHandler(this.TbVirtDirTextChanged);
 			// 
 			// tabControl
 			// 
-			this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			resources.ApplyResources(this.tabControl, "tabControl");
 			this.tabControl.Controls.Add(this.tpCommon);
 			this.tabControl.Controls.Add(this.tpLogging);
-			this.tabControl.Location = new System.Drawing.Point(12, 12);
+			this.errorProvider.SetError(this.tabControl, resources.GetString("tabControl.Error"));
+			this.errorProvider.SetIconAlignment(this.tabControl, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabControl.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.tabControl, ((int)(resources.GetObject("tabControl.IconPadding"))));
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(397, 282);
-			this.tabControl.TabIndex = 2;
 			// 
 			// tpCommon
 			// 
+			resources.ApplyResources(this.tpCommon, "tpCommon");
 			this.tpCommon.Controls.Add(this.gbVirtDir);
 			this.tpCommon.Controls.Add(this.rbDisable);
 			this.tpCommon.Controls.Add(this.rbEnable);
-			this.tpCommon.Location = new System.Drawing.Point(4, 22);
+			this.errorProvider.SetError(this.tpCommon, resources.GetString("tpCommon.Error"));
+			this.errorProvider.SetIconAlignment(this.tpCommon, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tpCommon.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.tpCommon, ((int)(resources.GetObject("tpCommon.IconPadding"))));
 			this.tpCommon.Name = "tpCommon";
-			this.tpCommon.Padding = new System.Windows.Forms.Padding(3);
-			this.tpCommon.Size = new System.Drawing.Size(389, 256);
-			this.tpCommon.TabIndex = 0;
-			this.tpCommon.Text = "Common";
 			this.tpCommon.UseVisualStyleBackColor = true;
 			// 
 			// gbVirtDir
 			// 
-			this.gbVirtDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			resources.ApplyResources(this.gbVirtDir, "gbVirtDir");
 			this.gbVirtDir.Controls.Add(this.lilaLink);
 			this.gbVirtDir.Controls.Add(this.tbVirtDir);
-			this.gbVirtDir.Location = new System.Drawing.Point(33, 86);
+			this.errorProvider.SetError(this.gbVirtDir, resources.GetString("gbVirtDir.Error"));
+			this.errorProvider.SetIconAlignment(this.gbVirtDir, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("gbVirtDir.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.gbVirtDir, ((int)(resources.GetObject("gbVirtDir.IconPadding"))));
 			this.gbVirtDir.Name = "gbVirtDir";
-			this.gbVirtDir.Size = new System.Drawing.Size(327, 108);
-			this.gbVirtDir.TabIndex = 2;
 			this.gbVirtDir.TabStop = false;
-			this.gbVirtDir.Text = "&Alias for the virtual webdav folder";
 			// 
 			// lilaLink
 			// 
-			this.lilaLink.AutoSize = true;
-			this.lilaLink.Location = new System.Drawing.Point(15, 71);
+			resources.ApplyResources(this.lilaLink, "lilaLink");
+			this.errorProvider.SetError(this.lilaLink, resources.GetString("lilaLink.Error"));
+			this.errorProvider.SetIconAlignment(this.lilaLink, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("lilaLink.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.lilaLink, ((int)(resources.GetObject("lilaLink.IconPadding"))));
 			this.lilaLink.Name = "lilaLink";
-			this.lilaLink.Size = new System.Drawing.Size(90, 13);
-			this.lilaLink.TabIndex = 1;
 			this.lilaLink.TabStop = true;
-			this.lilaLink.Text = "https://localhost/";
 			this.lilaLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LilaLinkLinkClicked);
 			// 
 			// tpLogging
 			// 
+			resources.ApplyResources(this.tpLogging, "tpLogging");
 			this.tpLogging.Controls.Add(this.lilaLogFileLocation);
 			this.tpLogging.Controls.Add(this.cbLogging);
-			this.tpLogging.Location = new System.Drawing.Point(4, 22);
+			this.errorProvider.SetError(this.tpLogging, resources.GetString("tpLogging.Error"));
+			this.errorProvider.SetIconAlignment(this.tpLogging, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tpLogging.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.tpLogging, ((int)(resources.GetObject("tpLogging.IconPadding"))));
 			this.tpLogging.Name = "tpLogging";
-			this.tpLogging.Size = new System.Drawing.Size(389, 256);
-			this.tpLogging.TabIndex = 1;
-			this.tpLogging.Text = "Logging";
 			this.tpLogging.UseVisualStyleBackColor = true;
 			// 
 			// lilaLogFileLocation
 			// 
-			this.lilaLogFileLocation.AutoSize = true;
-			this.lilaLogFileLocation.Location = new System.Drawing.Point(50, 68);
+			resources.ApplyResources(this.lilaLogFileLocation, "lilaLogFileLocation");
+			this.errorProvider.SetError(this.lilaLogFileLocation, resources.GetString("lilaLogFileLocation.Error"));
+			this.errorProvider.SetIconAlignment(this.lilaLogFileLocation, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("lilaLogFileLocation.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.lilaLogFileLocation, ((int)(resources.GetObject("lilaLogFileLocation.IconPadding"))));
 			this.lilaLogFileLocation.Name = "lilaLogFileLocation";
-			this.lilaLogFileLocation.Size = new System.Drawing.Size(106, 13);
-			this.lilaLogFileLocation.TabIndex = 1;
 			this.lilaLogFileLocation.TabStop = true;
-			this.lilaLogFileLocation.Text = "Open log file location";
 			this.lilaLogFileLocation.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LilaLogFileLocationLinkClicked);
 			// 
 			// cbLogging
 			// 
-			this.cbLogging.AutoSize = true;
-			this.cbLogging.Location = new System.Drawing.Point(32, 37);
+			resources.ApplyResources(this.cbLogging, "cbLogging");
+			this.errorProvider.SetError(this.cbLogging, resources.GetString("cbLogging.Error"));
+			this.errorProvider.SetIconAlignment(this.cbLogging, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cbLogging.IconAlignment"))));
+			this.errorProvider.SetIconPadding(this.cbLogging, ((int)(resources.GetObject("cbLogging.IconPadding"))));
 			this.cbLogging.Name = "cbLogging";
-			this.cbLogging.Size = new System.Drawing.Size(96, 17);
-			this.cbLogging.TabIndex = 0;
-			this.cbLogging.Text = "&Enable logging";
 			this.cbLogging.UseVisualStyleBackColor = true;
 			// 
 			// errorProvider
 			// 
 			this.errorProvider.ContainerControl = this;
+			resources.ApplyResources(this.errorProvider, "errorProvider");
 			// 
 			// FormsWebDavConfig
 			// 
 			this.AcceptButton = this.btnOk;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
-			this.ClientSize = new System.Drawing.Size(421, 349);
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.btnOk);
 			this.Controls.Add(this.btnCancel);
@@ -205,8 +195,6 @@
 			this.Name = "FormsWebDavConfig";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Configure WebDAV";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormsWebDavConfigFormClosing);
 			this.Load += new System.EventHandler(this.FormsWebDavConfigLoad);
 			this.tabControl.ResumeLayout(false);
