@@ -143,6 +143,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormsWebDavConfig.de.resx">
+      <DependentUpon>FormsWebDavConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsWebDavConfig.resx">
       <DependentUpon>FormsWebDavConfig.cs</DependentUpon>
     </EmbeddedResource>
