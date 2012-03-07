@@ -84,6 +84,27 @@ namespace WebDavWhs
 				Trace.TraceError(exception.ToString());
 			}
 
+			try
+			{
+				this.Core.Settings.DomainName = this.Core.GetDomainName();
+			}
+			catch(Exception exception)
+			{
+				Trace.TraceError(exception.ToString());
+			}
+
+			if (string.IsNullOrEmpty(this.Core.Settings.DomainName))
+			{
+				try
+				{
+					this.Core.Settings.DomainName = Environment.MachineName;
+				}
+				catch(Exception exception)
+				{
+					Trace.TraceError(exception.ToString());
+				}
+			}
+
 			this.PopulateData();
 			Trace.TraceInformation("FormsWebDavConfigLoad...finished.");
 		}
@@ -103,6 +124,8 @@ namespace WebDavWhs
 				return;
 			}
 
+			Cursor.Current = Cursors.WaitCursor;
+
 			this.CollectData();
 
 			try
@@ -120,6 +143,7 @@ namespace WebDavWhs
 			{
 				Trace.TraceError(exception.ToString());
 				e.Cancel = true;
+				Cursor.Current = Cursors.Default;
 				return;
 			}
 
@@ -133,6 +157,7 @@ namespace WebDavWhs
 			}
 
 			Trace.TraceInformation("FormsWebDavConfigFormClosing...finished.");
+			Cursor.Current = Cursors.Default;
 		}
 
 		/// <summary>
@@ -148,6 +173,8 @@ namespace WebDavWhs
 			{
 				this.rbDisable.Checked = true;
 			}
+
+			this.cbSsl.Checked = this.Core.Settings.UseSsl;
 
 			if(string.IsNullOrEmpty(this.Core.Settings.VirtualDirectoryAlias))
 			{
@@ -168,6 +195,7 @@ namespace WebDavWhs
 			this.Core.Settings.WebDavEnabled = this.rbEnable.Checked;
 			this.Core.Settings.VirtualDirectoryAlias = this.tbVirtDir.Text;
 			this.Core.Settings.EnableLogging = this.cbLogging.Checked;
+			this.Core.Settings.UseSsl = this.cbSsl.Checked;
 		}
 
 		/// <summary>
@@ -184,10 +212,30 @@ namespace WebDavWhs
 			{
 				this.btnOk.Enabled = true;
 				this.errorProvider.SetError(this.tbVirtDir, string.Empty);
-				this.lilaLink.Text = string.Format(StringResource.PlaceholderUrl, this.tbVirtDir.Text);
 			}
 
 			this.gbVirtDir.Enabled = this.rbEnable.Checked;
+			this.cbSsl.Enabled = this.rbEnable.Checked;
+
+			this.SetUrlText();
+		}
+
+		/// <summary>
+		/// Sets the URL text.
+		/// </summary>
+		private void SetUrlText()
+		{
+			string prefix = @"http";
+
+			if(this.cbSsl.Checked)
+			{
+				prefix = @"https";
+			}
+
+			this.tbUrl.Text = string.Format(StringResource.PlaceholderUrl,
+			                                prefix,
+			                                this.Core.Settings.DomainName,
+			                                this.tbVirtDir.Text);
 		}
 
 		/// <summary>
@@ -227,7 +275,7 @@ namespace WebDavWhs
 		/// <param name="e"> The <see cref="System.Windows.Forms.LinkLabelLinkClickedEventArgs" /> instance containing the event data. </param>
 		private void LilaLinkLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			Process.Start(this.lilaLink.Text);
+			Clipboard.SetDataObject(this.tbUrl.Text);
 		}
 
 		/// <summary>
@@ -238,6 +286,16 @@ namespace WebDavWhs
 		private void LilaLogFileLocationLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			Process.Start(this.Core.Settings.ApplicationDataFolder);
+		}
+
+		/// <summary>
+		/// Handles the CheckedChanged event of the cbSsl control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+		private void CbSslCheckedChanged(object sender, EventArgs e)
+		{
+			this.ValidateControls();
 		}
 	}
 }

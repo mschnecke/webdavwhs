@@ -50,6 +50,30 @@ namespace WebDavWhs
 		}
 
 		/// <summary>
+		/// Gets or sets a value indicating whether SSL is used or not.
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if SSL is used; otherwise, <c>false</c>.
+		/// </value>
+		public bool UseSsl
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the name of the domain.
+		/// </summary>
+		/// <value>
+		/// The name of the domain.
+		/// </value>
+		public string DomainName
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// 	Gets the application data folder.
 		/// </summary>
 		[XmlIgnore]
@@ -68,6 +92,8 @@ namespace WebDavWhs
 		{
 			this.VirtualDirectoryAlias = string.Empty;
 			this.WebDavEnabled = false;
+			this.UseSsl = true;
+			this.DomainName = string.Empty;
 		}
 
 		/// <summary>
