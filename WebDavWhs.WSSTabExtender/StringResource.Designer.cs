@@ -79,7 +79,7 @@ namespace WebDavWhs {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://localhost/{0}/.
+        ///   Looks up a localized string similar to {0}://{1}/{2}/.
         /// </summary>
         internal static string PlaceholderUrl {
             get {

@@ -7,6 +7,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using Microsoft.Win32;
 using Microsoft.WindowsServerSolutions.Storage;
 
 namespace WebDavWhs
@@ -128,10 +129,7 @@ namespace WebDavWhs
 			File.SetAttributes(string.Format(@"{0}\web.config", directoryPath), FileAttributes.Hidden);
 
 			// enable WebDAV
-			if (this.Iis.GetWebDavStatus(defaultWebSiteName) != WebDavStatus.Enabled)
-			{
-				this.Iis.SetWebDavStatus(defaultWebSiteName, true, true);
-			}
+			this.Iis.SetWebDavStatus(defaultWebSiteName, true, this.Settings.UseSsl);
 
 			this.Iis.RemoveAllWebDavAuthoringRules(rootVirtDir);
 			this.Iis.SetWebDavAuthoringRule(rootVirtDir);
@@ -172,6 +170,40 @@ namespace WebDavWhs
 			// remove physical root directory
 			string directoryPath = Path.Combine(this.Settings.ApplicationDataFolder, this.Settings.VirtualDirectoryAlias);
 			this.RemoveRootDir(directoryPath);
+		}
+
+		/// <summary>
+		/// Gets the name of the WHS domain.
+		/// </summary>
+		/// <returns></returns>
+		public string GetDomainName()
+		{
+			Trace.TraceInformation("GetDomainName...");
+
+			RegistryKey regKey = null;
+
+			try
+			{
+				const string subKeyString = @"SOFTWARE\Microsoft\Windows Server\Domain Manager\ActiveConfiguration";
+				regKey = Registry.LocalMachine.OpenSubKey(subKeyString, RegistryKeyPermissionCheck.ReadSubTree);
+
+				if (regKey == null)
+				{
+					Trace.TraceInformation("GetDomainName...finished.");
+					return string.Empty;
+				}
+
+				return (string)regKey.GetValue("DomainName", string.Empty);
+			}
+			finally
+			{
+				if (regKey != null)
+				{
+					regKey.Close();
+				}
+
+				Trace.TraceInformation("GetDomainName...finished.");
+			}
 		}
 
 		/// <summary>
