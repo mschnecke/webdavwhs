@@ -122,7 +122,7 @@
     <value>160, 17</value>
   </data>
   <data name="cbSsl.Text" xml:space="preserve">
-    <value>SSL verwenden (empfohlen)</value>
+    <value>&amp;SSL verwenden (empfohlen)</value>
   </data>
   <data name="lilaLink.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 89</value>
@@ -132,9 +132,6 @@
   </data>
   <data name="lilaLink.Text" xml:space="preserve">
     <value>In die Zwischenablage kopieren</value>
-  </data>
-  <data name="lilaLink.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopRight</value>
   </data>
   <data name="gbVirtDir.Text" xml:space="preserve">
     <value>Alias für das virtuelle &amp;WebDAV-Verzeichnis</value>

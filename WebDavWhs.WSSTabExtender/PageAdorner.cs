@@ -82,24 +82,6 @@ namespace WebDavWhs
 		}
 
 		/// <summary>
-		/// 	Creates the tasks.
-		/// </summary>
-		/// <returns> </returns>
-		public override TaskCollection CreateTasks()
-		{
-			TaskCollection tasks = new TaskCollection();
-			tasks.Add(new SyncUiTask(StringResource.ConfigureWebdav,
-			                         delegate
-			                         	{
-			                         		FormsWebDavConfig formsWebDavConfig = new FormsWebDavConfig(this.Core);
-			                         		formsWebDavConfig.ShowDialog();
-			                         		return null;
-			                         	}));
-
-			return tasks;
-		}
-
-		/// <summary>
 		/// Initializes the logging.
 		/// </summary>
 		private void InitializeLogging()
@@ -115,10 +97,28 @@ namespace WebDavWhs
 				Trace.AutoFlush = true;
 				Trace.TraceInformation("Start logging...");
 			}
-			catch(Exception exception)
+			catch (Exception exception)
 			{
 				Trace.TraceError(exception.ToString());
 			}
+		}
+
+		/// <summary>
+		/// 	Creates the tasks.
+		/// </summary>
+		/// <returns> </returns>
+		public override TaskCollection CreateTasks()
+		{
+			TaskCollection tasks = new TaskCollection();
+			tasks.Add(new SyncUiTask(StringResource.ConfigureWebdav,
+			                         delegate
+			                         	{
+			                         		FormsWebDavConfig formsWebDavConfig = new FormsWebDavConfig(this.Core);
+			                         		formsWebDavConfig.ShowDialog();
+			                         		return null;
+			                         	}));
+
+			return tasks;
 		}
 
 		/// <summary>

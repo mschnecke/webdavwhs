@@ -2,11 +2,5 @@
 <Include>
 
 	<?define SourceDir="..\Release"?>
-	
-	<?if $(var.MSIPlatform) = x64 ?>
-	<?define Win64 = "yes" ?>
-	<?else ?>
-	<?define Win64 = "no" ?>
-	<?endif ?>
 
 </Include>
