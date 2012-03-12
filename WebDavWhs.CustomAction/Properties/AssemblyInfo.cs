@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------------------------
 // <copyright file="AssemblyInfo.cs" >
-//     Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.
+//     Copyright (c) 2012, Michael Schnecke, Gï¿½ran Watzke. All rights reserved.
 // </copyright>
 //----------------------------------------------------------------------------------------
 
@@ -11,10 +11,10 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WebDAV for WHS")]
-[assembly: AssemblyCopyright("Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright (c) 2012, Michael Schnecke, Gï¿½ran Watzke. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("10EB810D-AD83-4238-A358-7F446195BDB4")]
-[assembly: AssemblyVersion("1.0.5.0")]
-[assembly: AssemblyFileVersion("1.0.5.0")]
+[assembly: AssemblyVersion("1.0.6.0")]
+[assembly: AssemblyFileVersion("1.0.6.0")]

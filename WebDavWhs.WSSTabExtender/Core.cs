@@ -115,7 +115,6 @@ namespace WebDavWhs
 
 			// TODO apply access rules
 
-
 			// create virtual root directory
 			this.Iis.CreateVirtualDirectory(defaultWebSiteName, @"/", this.Settings.VirtualDirectoryAlias, directoryPath);
 			
@@ -130,7 +129,6 @@ namespace WebDavWhs
 
 			// enable WebDAV
 			this.Iis.SetWebDavStatus(defaultWebSiteName, true, this.Settings.UseSsl);
-
 			this.Iis.RemoveAllWebDavAuthoringRules(rootVirtDir);
 			this.Iis.SetWebDavAuthoringRule(rootVirtDir);
 
@@ -146,8 +144,9 @@ namespace WebDavWhs
 				{
 					continue;
 				}
-				
-				this.Iis.CreateVirtualDirectory(defaultWebSiteName, @"/", string.Format(@"{0}/{1}", this.Settings.VirtualDirectoryAlias, folder.Name), folder.Path);
+
+				string virtDir = string.Format(@"{0}/{1}", this.Settings.VirtualDirectoryAlias, folder.Name);
+				this.Iis.CreateVirtualDirectory(defaultWebSiteName, @"/", virtDir, folder.Path);
 			}
 		}
 
@@ -158,7 +157,6 @@ namespace WebDavWhs
 		{
 			// remove virtual directories
 			string defaultWebSiteName = this.Iis.GetDefaultWebSite();
-
 			this.Iis.RemoveVirtualDirectory(defaultWebSiteName, @"/", this.Settings.VirtualDirectoryAlias, true);
 
 			// disable WebDAV

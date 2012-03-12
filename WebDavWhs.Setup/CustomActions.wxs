@@ -2,7 +2,9 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	
 	<Fragment>
-		<CustomAction Id="ServerRoles" BinaryKey="CustomAction.dll" DllEntry="CreateProcess" Execute="deferred" Impersonate="no" Return="ignore" />
+		
+		<!--Installs Server roles-->
+		<CustomAction Id="ServerRoles" BinaryKey="CustomAction" DllEntry="CreateProcess" Execute="deferred" Impersonate="no" Return="ignore" />
 		<CustomAction Id="ServerRoles_set" Property="ServerRoles" Value="App=dism.exe;Args=/online /enable-feature /featurename:IIS-WebDAV /featurename:IIS-ManagementScriptingTools /featurename:IIS-URLAuthorization" Execute="immediate" />
 
 		<InstallExecuteSequence>
@@ -10,7 +12,8 @@
 			<Custom Action="ServerRoles" After="ServerRoles_set"><![CDATA[NOT Installed]]></Custom>
 		</InstallExecuteSequence>
 
-		<Binary Id="CustomAction.dll" SourceFile="..\Tools\WebDavWhs.CustomAction.CA.dll" />
+		<!--Custom Action DLL-->
+		<Binary Id="CustomAction" SourceFile="..\Tools\WebDavWhs.CustomAction.CA.dll" />
 
 	</Fragment>
 </Wix>
