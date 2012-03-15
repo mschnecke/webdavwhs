@@ -17,6 +17,9 @@
       </Filter>
     </File>
   </ServerBinary>
+	<SupportedSkus>
+		<Sku>WHS</Sku>
+	</SupportedSkus>
   <SupportUrl>http://webdavwhs.codeplex.com/</SupportUrl>
   <PrivacyStatement>http://webdavwhs.codeplex.com/</PrivacyStatement>
 </Package>
