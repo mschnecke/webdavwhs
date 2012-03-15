@@ -7,6 +7,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using Microsoft.WindowsServerSolutions.AddinInfrastructure;
 using Microsoft.WindowsServerSolutions.Administration.ObjectModel;
 using Microsoft.WindowsServerSolutions.Administration.ObjectModel.Adorners;
 
@@ -63,6 +64,7 @@ namespace WebDavWhs
 			{
 				this.Core = new Core();
 				this.Core.Storage.Connect();
+				this.Core.VersionUpdate+=this.VersionUpdate;
 			}
 			catch(Exception exception)
 			{
@@ -78,6 +80,26 @@ namespace WebDavWhs
 			{
 				Trace.TraceError(exception.ToString());
 				this.Core.Settings = new ApplicationSettings();
+			}
+		}
+
+
+		/// <summary>
+		/// Updates version info in Add-In page.
+		/// </summary>
+		/// <param name="sender">The sender.</param>
+		/// <param name="e">The e.</param>
+		private void VersionUpdate(object sender, UpdateInfoEventArguments e)
+		{
+			AddInManager om = new AddInManager();
+
+			try
+			{
+				om.NewAddInVersionAvailableAsync(e.Guid, e.Version, e.AddressUri, e.UpdateClassification); 
+			}
+			catch(Exception exception)
+			{
+				Trace.TraceError(exception.ToString());
 			}
 		}
 

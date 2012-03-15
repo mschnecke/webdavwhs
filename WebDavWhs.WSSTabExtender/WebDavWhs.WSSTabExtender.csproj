@@ -65,6 +65,10 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="addininfrastructure">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Windows Server Solutions\6.1\Library\addininfrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Administration">
       <HintPath>..\Library\Microsoft.Web.Administration.dll</HintPath>
     </Reference>
@@ -117,6 +121,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="UpdateInfoEventArguments.cs" />
     <Compile Include="WebDavStatus.cs" />
   </ItemGroup>
   <ItemGroup>
