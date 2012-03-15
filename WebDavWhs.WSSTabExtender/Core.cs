@@ -5,9 +5,13 @@
 //----------------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
+using System.Reflection;
 using Microsoft.Win32;
+using Microsoft.WindowsServerSolutions.AddinInfrastructure;
 using Microsoft.WindowsServerSolutions.Storage;
 
 namespace WebDavWhs
@@ -17,6 +21,16 @@ namespace WebDavWhs
 	/// </summary>
 	internal class Core : IDisposable
 	{
+		/// <summary>
+		/// Occurs when version update was detected.
+		/// </summary>
+		public event EventHandler<UpdateInfoEventArguments> VersionUpdate;
+
+		/// <summary>
+		/// The update worker.
+		/// </summary>
+		private BackgroundWorker updateInfoWorker;
+
 		/// <summary>
 		/// 	Disposable flag.
 		/// </summary>
@@ -83,6 +97,11 @@ namespace WebDavWhs
 				return;
 			}
 
+			if (this.updateInfoWorker != null)
+			{
+				this.updateInfoWorker.Dispose();
+			}
+
 			if(this.Storage != null)
 			{
 				this.Storage.Dispose();
@@ -96,7 +115,6 @@ namespace WebDavWhs
 			this.isDisposed = true;
 			GC.SuppressFinalize(this);
 		}
-
 
 		/// <summary>
 		/// Enables the WebDAV feature.
@@ -203,6 +221,152 @@ namespace WebDavWhs
 				Trace.TraceInformation("GetDomainName...finished.");
 			}
 		}
+
+
+		/// <summary>
+		/// Checks for an update.
+		/// </summary>
+		public void CheckForUpdate()
+		{
+			this.updateInfoWorker = new BackgroundWorker();
+			this.updateInfoWorker.RunWorkerCompleted += this.UpdateInfoWorkerRunWorkerCompleted;
+			this.updateInfoWorker.DoWork += this.UpdateInfoWorkerDoWork;
+			this.updateInfoWorker.RunWorkerAsync();
+		}
+
+		/// <summary>
+		/// Updates the info worker do work.
+		/// </summary>
+		/// <param name="sender">The sender.</param>
+		/// <param name="e">The <see cref="System.ComponentModel.DoWorkEventArgs"/> instance containing the event data.</param>
+		private void UpdateInfoWorkerDoWork(object sender, DoWorkEventArgs e)
+		{
+			try
+			{
+				Version version = this.GetUpdateInfo();
+
+				if (version == null)
+				{
+					e.Result = null;
+					return;
+				}
+
+				Version assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version;
+
+				if (version.CompareTo(assemblyVersion) > 0)
+				{
+					e.Result = version;
+					return;
+				}
+
+				e.Result = null;
+			}
+			catch(Exception exception)
+			{
+				Trace.TraceError(exception.ToString());
+				e.Result = null;
+			}
+		}
+
+		/// <summary>
+		/// Handles the RunWorkerCompleted event of the updateInfoWorker control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="System.ComponentModel.RunWorkerCompletedEventArgs"/> instance containing the event data.</param>
+		private void UpdateInfoWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+		{
+			if (e.Result == null)
+			{
+				return;
+			}
+
+			Version version = e.Result as Version;
+
+			UpdateInfoEventArguments updateInfo = new UpdateInfoEventArguments();
+
+			try
+			{
+				updateInfo.AddressUri = new Uri(StringResource.AdrUri);
+
+				Guid guid;
+				if (Guid.TryParse(StringResource.AddInId, out guid) == false)
+				{
+					return;
+				}
+
+				updateInfo.Guid = guid;
+				updateInfo.UpdateClassification = UpdateClassification.Update;
+				updateInfo.Version = version;
+			}
+			catch(Exception exception)
+			{
+				Trace.TraceError(exception.ToString());
+				return;
+			}
+
+			if (this.VersionUpdate != null)
+			{
+				this.VersionUpdate(this, updateInfo);
+			}
+		}
+
+		/// <summary>
+		/// Gets the update info.
+		/// </summary>
+		/// <returns>Version, in error case null.</returns>
+		private Version GetUpdateInfo()
+		{
+			WebClient webClient = new WebClient();
+			Stream webContent = null;
+			StreamReader streamReader = null;
+
+			try
+			{
+				webContent = webClient.OpenRead(StringResource.AdrUri);
+
+				if (webContent == null)
+				{
+					return null;
+				}
+
+				streamReader = new StreamReader(webContent);
+
+				string line;
+				while ((line = streamReader.ReadLine()) != null)
+				{
+					if (line.IndexOf("ReleaseName", StringComparison.Ordinal) > 0)
+					{
+						string[] split = line.Split(new[] { ' ' });
+						string version = split[split.Length - 1].Replace("</td>", "");
+
+						Version v;
+
+						if (Version.TryParse(version, out v) == false)
+						{
+							return null;
+						}
+
+						return v;
+					}
+				}
+
+				return null;
+			}
+			finally
+			{
+				if (streamReader != null)
+				{
+					streamReader.Dispose();
+				}
+				if (webContent != null)
+				{
+					webContent.Dispose();
+				}
+
+				webClient.Dispose();
+			}
+		}
+
 
 		/// <summary>
 		/// 	Creates the root dir.
