@@ -97,7 +97,7 @@ namespace WebDavWhs
 			{
 				this.StorageManager.Dispose();
 			}
-
+			
 			this.isDisposed = true;
 			GC.SuppressFinalize(this);
 		}
@@ -154,7 +154,6 @@ namespace WebDavWhs
 		private void StorageManagerPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
 			Trace.TraceInformation("StorageManagerPropertyChanged...");
-
 			Trace.TraceInformation(string.Format("PropertyChangedEventArgs : {0}", e.PropertyName));
 
 			if(this.StoragePropertyChanged != null)

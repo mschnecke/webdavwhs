@@ -222,7 +222,6 @@ namespace WebDavWhs
 			}
 		}
 
-
 		/// <summary>
 		/// Checks for an update.
 		/// </summary>

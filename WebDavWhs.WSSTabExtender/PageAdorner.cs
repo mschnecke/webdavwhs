@@ -64,7 +64,8 @@ namespace WebDavWhs
 			{
 				this.Core = new Core();
 				this.Core.Storage.Connect();
-				this.Core.VersionUpdate+=this.VersionUpdate;
+				this.Core.VersionUpdate += this.VersionUpdate;
+				this.Core.CheckForUpdate();
 			}
 			catch(Exception exception)
 			{
@@ -81,6 +82,8 @@ namespace WebDavWhs
 				Trace.TraceError(exception.ToString());
 				this.Core.Settings = new ApplicationSettings();
 			}
+
+
 		}
 
 
