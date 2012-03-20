@@ -66,8 +66,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="addininfrastructure">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Windows Server Solutions\6.1\Library\addininfrastructure.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Windows Server Solutions\6.1\Library\addininfrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Administration">
       <HintPath>..\Library\Microsoft.Web.Administration.dll</HintPath>

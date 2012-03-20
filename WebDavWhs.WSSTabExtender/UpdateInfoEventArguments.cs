@@ -1,4 +1,10 @@
-﻿using System;
+﻿//----------------------------------------------------------------------------------------
+// <copyright file="UpdateInfoEventArguments.cs" >
+//     Copyright (c) 2012, Michael Schnecke, Göran Watzke. All rights reserved.
+// </copyright>
+//----------------------------------------------------------------------------------------
+
+using System;
 using Microsoft.WindowsServerSolutions.AddinInfrastructure;
 
 namespace WebDavWhs
