@@ -7,6 +7,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Forms;
 using Microsoft.WindowsServerSolutions.AddinInfrastructure;
 using Microsoft.WindowsServerSolutions.Administration.ObjectModel;
 using Microsoft.WindowsServerSolutions.Administration.ObjectModel.Adorners;
@@ -138,6 +139,14 @@ namespace WebDavWhs
 			tasks.Add(new SyncUiTask(StringResource.ConfigureWebdav,
 			                         delegate
 			                         	{
+											// check for remote web access
+											if (this.Core.CheckRemoteAccess() == false)
+											{
+												MessageBox.Show(StringResource.Error_RemoteAccess);
+												return null;
+											}
+
+											// opens settings dialog
 			                         		FormsWebDavConfig formsWebDavConfig = new FormsWebDavConfig(this.Core);
 			                         		formsWebDavConfig.ShowDialog();
 			                         		return null;

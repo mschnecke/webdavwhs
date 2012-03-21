@@ -88,6 +88,15 @@ namespace WebDavWhs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Remote Web Access is turned off. Please turn on the Remote Web Access first..
+        /// </summary>
+        internal static string Error_RemoteAccess {
+            get {
+                return ResourceManager.GetString("Error_RemoteAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter an alias name for the virtual directory..
         /// </summary>
         internal static string Error_VirtDirName {
