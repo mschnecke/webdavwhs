@@ -126,6 +126,9 @@
   <data name="ConfigureWebdav" xml:space="preserve">
     <value>Configure WebDAV</value>
   </data>
+  <data name="Error_RemoteAccess" xml:space="preserve">
+    <value>The Remote Web Access is turned off. Please turn on the Remote Web Access first.</value>
+  </data>
   <data name="Error_VirtDirName" xml:space="preserve">
     <value>Enter an alias name for the virtual directory.</value>
   </data>

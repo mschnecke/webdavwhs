@@ -120,6 +120,9 @@
   <data name="ConfigureWebdav" xml:space="preserve">
     <value>WebDAV konfigurieren</value>
   </data>
+  <data name="Error_RemoteAccess" xml:space="preserve">
+    <value>Der Remotewebzugriff ist deaktiviert. Bitte aktivieren Sie zuerst den Remotewebzugriff.</value>
+  </data>
   <data name="Error_VirtDirName" xml:space="preserve">
     <value>Geben Sie einen Aliasnamen für das Virtuelle Verzeichnis an.</value>
   </data>

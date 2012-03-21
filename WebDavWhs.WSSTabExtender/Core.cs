@@ -74,7 +74,6 @@ namespace WebDavWhs
 			this.isDisposed = false;
 			this.Settings = new ApplicationSettings();
 			this.Storage = new Storage();
-			this.Storage.StoragePropertyChanged += this.Storage_StoragePropertyChanged;
 			this.Iis = new Iis();
 		}
 
@@ -83,7 +82,6 @@ namespace WebDavWhs
 		/// </summary>
 		~Core()
 		{
-			this.Storage.StoragePropertyChanged -= this.Storage_StoragePropertyChanged;
 			this.Dispose();
 		}
 
@@ -231,6 +229,52 @@ namespace WebDavWhs
 			this.updateInfoWorker.RunWorkerCompleted += this.UpdateInfoWorkerRunWorkerCompleted;
 			this.updateInfoWorker.DoWork += this.UpdateInfoWorkerDoWork;
 			this.updateInfoWorker.RunWorkerAsync();
+		}
+
+		/// <summary>
+		/// Checks whether the remote access is enabled or not.
+		/// </summary>
+		/// <returns>Validation result.</returns>
+		public bool CheckRemoteAccess()
+		{
+			Trace.TraceInformation("CheckRemoteAccess...");
+
+			const string regKey = @"SOFTWARE\Microsoft\Windows Server\Connectivity";
+			RegistryKey registryKey = null;
+
+			try
+			{
+				registryKey = Registry.LocalMachine.OpenSubKey(regKey);
+
+				if (registryKey != null)
+				{
+					object retval = registryKey.GetValue("RemoteAccess");
+
+					if (retval == null)
+					{
+						Trace.TraceError("The return value of 'RemoteAccess' is null.");
+						return true;
+					}
+					
+					return Convert.ToBoolean(retval);
+				}
+
+				return true;
+			}
+			catch (Exception exception)
+			{
+				Trace.TraceError(exception.ToString());
+				return true;
+			}
+			finally
+			{
+				if (registryKey != null)
+				{
+					registryKey.Close();
+				}
+
+				Trace.TraceInformation("CheckRemoteAccess...finished.");
+			}
 		}
 
 		/// <summary>
@@ -406,15 +450,6 @@ namespace WebDavWhs
 			{
 				Trace.TraceInformation("RemoveRootDir...finished.");
 			}
-		}
-
-		/// <summary>
-		/// 	Handles the StoragePropertyChanged event of the Storage control.
-		/// </summary>
-		/// <param name="sender"> The source of the event. </param>
-		/// <param name="e"> The <see cref="WebDavWhs.StoragePropertyEventArgs" /> instance containing the event data. </param>
-		private void Storage_StoragePropertyChanged(object sender, StoragePropertyEventArgs e)
-		{
 		}
 	}
 }
