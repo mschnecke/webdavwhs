@@ -1,8 +1,4 @@
-Microsoft Home Server 2011 Add-in to enable WebDAV access to the server folders.
-
-
-
-Features
+### Microsoft Home Server 2011 Add-in to enable WebDAV access to the server folders.
 
 Installs and configures the IIS WebDAV feature
 
